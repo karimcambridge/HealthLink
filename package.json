@@ -1,0 +1,42 @@
+{
+  "name": "healthlink",
+  "version": "0.0.1",
+  "description": "Facilitates the generation and transmission of medical prescriptions from medical practitionors to pharmacies",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karimcambridge/comp-3613-software-engineering-2-project.git"
+  },
+  "keywords": [
+    "nodejs",
+    "jwt",
+    "passport",
+    "express",
+  
+    "prescriptions",
+    "pharmacy"
+  ],
+  "author": "Karim K.F Cambridge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karimcambridge/comp-3613-software-engineering-2-project/issues"
+  },
+  "homepage": "https://github.com/karimcambridge/comp-3613-software-engineering-2-project#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^7.4.2",
+    "mysql": "^2.14.1",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.38.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
