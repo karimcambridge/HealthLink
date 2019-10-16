@@ -31,11 +31,11 @@ users.post('/register', (req, res) => {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           userData.password = hash;
           User.create(userData)
-            .then((user) => {
-              res.json({ status: `${user.email}Registered!` });
+            .then((createdUser) => {
+              res.json({ status: `(${createdUser.email}) Registered!` });
             })
-            .catch((err) => {
-              res.send(`error: ${err}`);
+            .catch((authErr) => {
+              res.send(`error: ${authErr}`);
             });
         });
       } else {
@@ -59,6 +59,7 @@ users.post('/login', (req, res) => {
           const token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
             expiresIn: 1440,
           });
+          res.send(`${user.dataValues.first_name} ${user.dataValues.last_name} has logged in with ${user.dataValues.email}.`);
           res.send(token);
         }
       } else {

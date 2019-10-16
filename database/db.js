@@ -3,9 +3,12 @@ const Sequelize = require('sequelize');
 
 const db = {};
 const sequelize = new Sequelize('healthlink', 'healthlink', 'x5P05C5Wtglz', {
-  host: 'localhost',
+  host: '79.137.80.128',
   dialect: 'mariadb',
-  dialectOptions: { connectTimeout: 1000 }, // mariadb connector option
+  dialectOptions: {
+    connectTimeout: 2000,
+    timezone: 'Etc/GMT-4',
+  },
 
   pool: {
     max: 5,
