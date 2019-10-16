@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 
 const db = {};
-const sequelize = new Sequelize('healthlink', 'user', 'pw', {
+const sequelize = new Sequelize('healthlink', 'healthlink', 'x5P05C5Wtglz', {
     host: 'localhost',
     dialect: 'mariadb',
     dialectOptions: { connectTimeout: 1000 }, // mariadb connector option
