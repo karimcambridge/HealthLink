@@ -26,14 +26,13 @@
   },
   "homepage": "https://github.com/karimcambridge/comp-3613-software-engineering-2-project#readme",
   "dependencies": {
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^7.4.2",
-    "mysql": "^2.14.1",
-    "mysql2": "^1.6.1",
-    "sequelize": "^4.38.0"
+    "mariadb": "^2.1.1",
+    "sequelize": "^5.19.7"
   },
   "devDependencies": {
     "eslint": "~6.5.1",

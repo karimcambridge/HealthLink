@@ -6,7 +6,6 @@ const sequelize = new Sequelize('healthlink', 'healthlink', 'x5P05C5Wtglz', {
   host: 'localhost',
   dialect: 'mariadb',
   dialectOptions: { connectTimeout: 1000 }, // mariadb connector option
-  operatorsAliases: false,
 
   pool: {
     max: 5,
