@@ -18,11 +18,14 @@
 ###### install dependencies
 * npm install
 
-###### build and run for production
+###### to test run for production
 * npm run test
 
 ###### to test for development purposes
 * npm run dev
+
+###### to build for production
+* npm run build
 
 
 ### Credits

@@ -3,9 +3,9 @@ import { Link, withRouter } from 'react-router-dom';
 
 class Landing extends Component {
     logOut(e) {
-        e.preventDefault()
-        localStorage.removeItem('usertoken')
-        this.props.history.push(`/`)
+        e.preventDefault();
+        localStorage.removeItem('usertoken');
+        this.props.history.push(`/`);
     }
 
     render() {
@@ -32,7 +32,7 @@ class Landing extends Component {
           </Link>
                 </li>
                 <li className="nav-item">
-                    <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+                    <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
                         Logout
           </a>
                 </li>
@@ -61,7 +61,7 @@ class Landing extends Component {
                         <li className="nav-item">
                             <Link to="/" className="nav-link">
                                 Home
-              </Link>
+                            </Link>
                         </li>
                     </ul>
                     {localStorage.usertoken ? userLink : loginRegLink}

@@ -59,7 +59,7 @@ users.post('/login', (req, res) => {
           const token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
             expiresIn: 1440,
           });
-          res.send(`${user.dataValues.first_name} ${user.dataValues.last_name} has logged in with ${user.dataValues.email}.`);
+          // res.send(`${user.dataValues.first_name} ${user.dataValues.last_name} has logged in with ${user.dataValues.email}.`);
           res.send(token);
         }
       } else {
