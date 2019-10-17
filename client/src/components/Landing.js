@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Landing extends Component {
     render() {
         return (
             <div className="container">
-                <div className="jumbotron mt-5">
-                    <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center">HealthLink</h1>
-                    </div>
-                </div>
+               <h1 className="text-center">HealthLink</h1>
+                <FontAwesomeIcon icon="spinner" size="6x" pulse  />
             </div>
         )
     }
