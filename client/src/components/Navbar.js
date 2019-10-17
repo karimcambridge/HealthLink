@@ -9,6 +9,16 @@ class Landing extends Component {
     }
 
     render() {
+        const homeLink = (
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link to="/" className="nav-link">
+                        Home
+                    </Link>
+                </li>
+            </ul>
+        );
+    
         const loginRegLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
@@ -22,31 +32,22 @@ class Landing extends Component {
                     </Link>
                 </li>
             </ul>
-        )
+        );
 
         const userLink = (
-            <div>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">
-                            Home
-                        </Link>
-                    </li>
-                </ul>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link to="/profile" className="nav-link">
-                            User
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        )
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link to="/profile" className="nav-link">
+                        User
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        );
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
@@ -66,10 +67,11 @@ class Landing extends Component {
                     className="collapse navbar-collapse justify-content-md-center"
                     id="navbarsExample10"
                 >
+                    {this.props.location.pathname !== '/' ? homeLink : null}
                     {localStorage.usertoken ? userLink : loginRegLink}
                 </div>
             </nav>
-        )
+        );
     }
 }
 
