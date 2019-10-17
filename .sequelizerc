@@ -1,0 +1,4 @@
+module.exports = {
+  'config': 'database/config/config.json',
+  'models-path': 'models'
+};

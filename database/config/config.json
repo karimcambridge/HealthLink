@@ -1,0 +1,8 @@
+{
+  "development": {
+    "dialect": "mariadb"
+  },
+  "production": {
+    "dialect": "mariadb"
+  }
+}
