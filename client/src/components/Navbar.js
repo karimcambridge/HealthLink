@@ -50,13 +50,13 @@ class Landing extends Component {
         );
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <button
                     className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
-                    data-target="#navbarsExample10"
-                    aria-controls="navbarsExample10"
+                    data-target="#mainNavBar"
+                    aria-controls="mainNavBar"
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
@@ -64,8 +64,8 @@ class Landing extends Component {
                 </button>
 
                 <div
-                    className="collapse navbar-collapse justify-content-md-center"
-                    id="navbarsExample10"
+                    className="collapse navbar-collapse justify-content-md-end"
+                    id="mainNavBar"
                 >
                     {this.props.location.pathname !== '/' ? homeLink : null}
                     {localStorage.usertoken ? userLink : loginRegLink}

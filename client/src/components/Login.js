@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { login } from './UserFunctions';
+import Toast from 'react-bootstrap/Toast';
 
 class Login extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             email: '',
             password: '',
-            errors: {}
-        }
+            errors: {
+                loginFailed: false
+            }
+        };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -17,27 +20,79 @@ class Login extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
+
     onSubmit(e) {
         e.preventDefault()
 
         const user = {
             email: this.state.email,
             password: this.state.password
-        }
+        };
 
-        login(user).then(res => {
-            if (res) {
-                this.props.history.push(`/profile`);
-            }
-        })
+        login(user)
+            .then(res => {
+                if (res) {
+                    this.props.history.push(`/profile`);
+                } else {
+                    this.setState({
+                        errors: {
+                            loginFailed: true
+                        }
+                    });
+                    setTimeout( () => {
+                        this.setState({
+                            errors: {
+                                loginFailed: false
+                            }
+                        });
+                    }, 3000);
+                    console.log('Login failed 0');
+                }
+            })
+            .catch(err => {
+                this.setState({
+                    errors: {
+                        loginFailed: true
+                    }
+                });
+                setTimeout(() => {
+                    this.setState({
+                        errors: {
+                            loginFailed: false
+                        }
+                    });
+                }, 3000);
+                console.log('Login failed 1');
+            })
     }
 
     render() {
+        const failedLoginNotification = (
+            <div>
+                <Toast style={{
+                        margin: "0 auto",
+                        textAlign: "center",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginTop: "40%",
+                    }} animation={true}>
+                    <Toast.Header style={{color: 'red'}}>
+                        <strong className="mr-auto">ERROR</strong>
+                    </Toast.Header>
+                    <Toast.Body style={{
+                        textAlign: "center",
+                    }}>
+                        Invalid credentials.
+                    </Toast.Body>
+                </Toast>
+            </div>
+        );
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 mt-5 mx-auto">
-                        <form noValidate onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onSubmit} errors={this.state.errors}>
                             <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                             <div className="form-group">
                                 <label htmlFor="email">Email address</label>
@@ -48,6 +103,7 @@ class Login extends Component {
                                     placeholder="Enter email"
                                     value={this.state.email}
                                     onChange={this.onChange}
+                                    required
                                 />
                             </div>
                             <div className="form-group">
@@ -59,6 +115,7 @@ class Login extends Component {
                                     placeholder="Password"
                                     value={this.state.password}
                                     onChange={this.onChange}
+                                    required
                                 />
                             </div>
                             <button
@@ -66,8 +123,9 @@ class Login extends Component {
                                 className="btn btn-lg btn-primary btn-block"
                             >
                                 Sign in
-              </button>
+                            </button>
                         </form>
+                        {this.state.errors.loginFailed === true ? failedLoginNotification : null}
                     </div>
                 </div>
             </div>
