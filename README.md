@@ -1,6 +1,6 @@
-# HealthLink
+# HealthLink Server
 
-> Maintained by
+Maintained by
 
 > [Karim K.F Cambridge](https://github.com/karimcambridge)
 
@@ -18,20 +18,13 @@
 ###### install dependencies
 * npm install
 
-###### to test run for production
-* npm run test
-
-###### to test for development purposes
+###### to test in development mode
 * npm run dev
 
-###### to build for production
-* npm run build
-
+###### to run in production mode
+* npm run test
 
 ### Credits
 
-> Build with ❤️ using [React](https://reactjs.org/) and various other tools.
-
 * mariadb
 * sequelize
-* fontawesome
