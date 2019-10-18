@@ -89,9 +89,11 @@ class Login extends Component {
         );
 
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6 mt-5 mx-auto">
+                        <h1 className="text-center">HealthLink</h1>
+                        <div class="mt-5"></div>
                         <form onSubmit={this.onSubmit} errors={this.state.errors}>
                             <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                             <div className="form-group">
@@ -125,6 +127,10 @@ class Login extends Component {
                                 Sign in
                             </button>
                         </form>
+                        <div class="mt-1 float-right">
+                            Need to request an account?&nbsp;
+                            <a href="/register">Click here</a>
+                        </div>
                         {this.state.errors.loginFailed === true ? failedLoginNotification : null}
                     </div>
                 </div>

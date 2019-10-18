@@ -37,7 +37,7 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6 mt-5 mx-auto">
                         <form onSubmit={this.onSubmit}>
@@ -97,6 +97,10 @@ class Register extends Component {
                                 Register!
                             </button>
                         </form>
+                        <div class="mt-1 float-right">
+                            Already have an account?&nbsp;
+                            <a href="/login">Click here to login</a>
+                        </div>
                     </div>
                 </div>
             </div>

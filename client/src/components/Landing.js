@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 class Landing extends Component {
     render() {
         return (
-            <div className="container">
+            <div className="container-fluid">
                <h1 className="text-center">HealthLink</h1>
             </div>
         )
