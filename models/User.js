@@ -25,6 +25,12 @@ module.exports = db.sequelize.define(
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW,
     },
+    title: {
+      type: Sequelize.STRING,
+    },
+    role: {
+      type: Sequelize.STRING,
+    },
   },
   {
     timestamps: false,

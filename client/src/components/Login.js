@@ -92,10 +92,8 @@ class Login extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6 mt-5 mx-auto">
-                        <h1 className="text-center">HealthLink</h1>
-                        <div class="mt-5"></div>
+                        <div class="mt-3"></div>
                         <form onSubmit={this.onSubmit} errors={this.state.errors}>
-                            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                             <div className="form-group">
                                 <label htmlFor="email">Email address</label>
                                 <input
