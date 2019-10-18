@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/karimcambridge/comp-3613-software-engineering-2-project#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",

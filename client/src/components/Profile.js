@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 class Profile extends Component {
     constructor() {
@@ -31,7 +32,8 @@ class Profile extends Component {
         return (
             <Container>
                 <Row>
-                    <Col md={4}>
+                    <Col md={8}>
+                        <div class="mt-1"></div>
                         <Card style={{ width: '18rem' }} >
                             <Card.Header>Profile</Card.Header>
                             <Card.Img variant="top" width="64" height="200" src="https://vignette.wikia.nocookie.net/goanimate-v2/images/d/d3/Crash_Bandicoot_-_PS3_Avatar.png/revision/latest/scale-to-width-down/185?cb=20180721082645" />
@@ -43,8 +45,23 @@ class Profile extends Component {
                             </ListGroup>
                         </Card>
                     </Col>
-                    <Col md={4}>Second column</Col>
-                    <Col md={4}>Third column</Col>
+                    <Col md={4}>
+                            <div class="mt-1">
+                                <Button variant="primary" size="lg" active>
+                                    Create Prescription
+                                </Button>
+                            </div>
+                            <div class="mt-2">
+                                <Button variant="primary" size="lg" active>
+                                    Find Prescription
+                                </Button>
+                            </div>
+                            <div class="mt-2">
+                                <Button variant="primary" size="lg" active>
+                                    Prescriptions History
+                                </Button>
+                            </div>
+                    </Col>
                 </Row>
             </Container>
         )
