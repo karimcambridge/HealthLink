@@ -14,6 +14,8 @@ class Profile extends Component {
             first_name: '',
             last_name: '',
             email: '',
+            title: '',
+            role: '',
             errors: {}
         }
     }
@@ -24,7 +26,9 @@ class Profile extends Component {
             this.setState({
                 first_name: decoded.first_name,
                 last_name: decoded.last_name,
-                email: decoded.email
+                email: decoded.email,
+                title: decoded.title,
+                role: decoded.role
             });
     }
 
@@ -38,9 +42,10 @@ class Profile extends Component {
                             <Card.Header>Profile</Card.Header>
                             <Card.Img variant="top" width="64" height="200" src="https://vignette.wikia.nocookie.net/goanimate-v2/images/d/d3/Crash_Bandicoot_-_PS3_Avatar.png/revision/latest/scale-to-width-down/185?cb=20180721082645" />
                             <Card.Body>
-                                <Card.Title>{this.state.first_name} {this.state.last_name}</Card.Title>
+                                <Card.Title>{this.state.title} {this.state.first_name} {this.state.last_name}</Card.Title>
                             </Card.Body>
                             <ListGroup variant="list-group-flush">
+                                <ListGroup.Item>{this.state.role}</ListGroup.Item>
                                 <ListGroup.Item>{this.state.email}</ListGroup.Item>
                             </ListGroup>
                         </Card>
