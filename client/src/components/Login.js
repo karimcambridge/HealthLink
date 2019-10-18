@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { login } from './UserFunctions';
+import { BrowserRouter as Redirect } from 'react-router-dom';
+import { isAuthenticated, login } from './UserFunctions';
 import Toast from 'react-bootstrap/Toast';
 
 class Login extends Component {
@@ -10,11 +11,36 @@ class Login extends Component {
             password: '',
             errors: {
                 loginFailed: false
-            }
+            },
+            //redirectToReferrer: false
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        if (isAuthenticated()) {
+            //this.setState(() => ({
+            //    redirectToReferrer: true
+            //}));
+            this.props.history.push(`/profile`);
+        }
+    }
+
+    promptLoginFailure() {
+        this.setState({
+            errors: {
+                loginFailed: true
+            }
+        });
+        setTimeout(() => {
+            this.setState({
+                errors: {
+                    loginFailed: false
+                }
+            });
+        }, 3000);
     }
 
     onChange(e) {
@@ -32,41 +58,26 @@ class Login extends Component {
         login(user)
             .then(res => {
                 if (res) {
+                    //this.setState(() => ({
+                    //    redirectToReferrer: true
+                    //}));
                     this.props.history.push(`/profile`);
                 } else {
-                    this.setState({
-                        errors: {
-                            loginFailed: true
-                        }
-                    });
-                    setTimeout( () => {
-                        this.setState({
-                            errors: {
-                                loginFailed: false
-                            }
-                        });
-                    }, 3000);
+                    this.promptLoginFailure();
                     console.log('Login failed 0');
                 }
             })
             .catch(err => {
-                this.setState({
-                    errors: {
-                        loginFailed: true
-                    }
-                });
-                setTimeout(() => {
-                    this.setState({
-                        errors: {
-                            loginFailed: false
-                        }
-                    });
-                }, 3000);
+                this.promptLoginFailure();
                 console.log('Login failed 1');
             })
     }
 
     render() {
+        //if (this.state.redirectToReferrer === true) {
+        //    return <Redirect to={{ pathname: '/profile', state: { from: this.props.location } }} />;
+        //}
+
         const failedLoginNotification = (
             <div>
                 <Toast style={{

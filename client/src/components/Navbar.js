@@ -6,7 +6,7 @@ class Navbar extends Component {
     userLogout(e) {
         e.preventDefault();
         logOut();
-        this.props.history.push(`/`);
+        this.props.history.push(`/login`);
     }
 
     render() {

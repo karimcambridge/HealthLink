@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { register } from './UserFunctions';
+import { isAuthenticated, register } from './UserFunctions';
 
 class Register extends Component {
     constructor() {
@@ -17,6 +17,12 @@ class Register extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        if (isAuthenticated()) {
+            this.props.history.push(`/profile`);
+        }
     }
 
     onChange(e) {
@@ -37,7 +43,7 @@ class Register extends Component {
 
         register(newUser).then(res => {
             this.props.history.push(`/login`)
-        })
+        });
     }
 
     render() {
