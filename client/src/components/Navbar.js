@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { isAuthenticated, logOut } from './UserFunctions';
 
 class Navbar extends Component {
-    logOut(e) {
+    userLogout(e) {
         e.preventDefault();
-        localStorage.removeItem('usertoken');
+        logOut();
         this.props.history.push(`/`);
     }
 
@@ -12,7 +13,7 @@ class Navbar extends Component {
         const userLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
+                    <a href="/" onClick={this.userLogout.bind(this)} className="nav-link">
                         Logout
                     </a>
                 </li>
@@ -45,7 +46,7 @@ class Navbar extends Component {
                     </div>
                     <div className="justify-content-md-end">
                         {/*this.props.location.pathname !== '/' ? homeLink : null*/}
-                        {localStorage.usertoken ? userLink : null}
+                        {isAuthenticated() ? userLink : null}
                     </div>
                 </div>
             </nav>

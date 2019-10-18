@@ -29,3 +29,15 @@ export const login = user => {
             console.log(err);
         });
 };
+
+export const getUserToken = () => {
+    return localStorage.usertoken;
+};
+
+export const isAuthenticated = () => {
+    return localStorage.usertoken ? true : false;
+};
+
+export const logOut = () => {
+    localStorage.removeItem('usertoken');
+};

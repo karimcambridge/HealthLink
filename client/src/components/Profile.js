@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
+import { getUserToken } from './UserFunctions';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 
 class Profile extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             first_name: '',
             last_name: '',
@@ -21,8 +22,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        const token = localStorage.usertoken;
-        const decoded = jwt_decode(token)
+        const decoded = jwt_decode(getUserToken())
             this.setState({
                 first_name: decoded.first_name,
                 last_name: decoded.last_name,
@@ -53,17 +53,12 @@ class Profile extends Component {
                     <Col md={4}>
                             <div class="mt-1">
                                 <Button variant="primary" size="lg" active>
-                                    Create Prescription
-                                </Button>
+                                    Find Patient
+                                    </Button>
                             </div>
-                            <div class="mt-2">
+                            <div class="mt-5">
                                 <Button variant="primary" size="lg" active>
                                     Find Prescription
-                                </Button>
-                            </div>
-                            <div class="mt-2">
-                                <Button variant="primary" size="lg" active>
-                                    Prescriptions History
                                 </Button>
                             </div>
                     </Col>

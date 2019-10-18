@@ -4,7 +4,7 @@ import { register } from './UserFunctions';
 
 class Register extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             first_name: '',
             last_name: '',
@@ -15,13 +15,14 @@ class Register extends Component {
             errors: {}
         }
 
-        this.onChange = this.onChange.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
+
     onSubmit(e) {
         e.preventDefault()
 
