@@ -12,9 +12,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const Users = require('./routes/Users');
 const Patients = require('./routes/Patients');
+const Prescriptions = require('./routes/Prescriptions');
 
 app.use('/users', Users);
 app.use('/patients', Patients);
+app.use('/prescriptions', Prescriptions);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
