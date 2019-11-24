@@ -11,8 +11,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const Users = require('./routes/Users');
+const Patients = require('./routes/Patients');
 
 app.use('/users', Users);
+app.use('/patients', Patients);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
