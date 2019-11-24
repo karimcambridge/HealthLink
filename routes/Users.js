@@ -63,9 +63,11 @@ users.post('/login', (req, res) => {
           });
           // res.send(`${user.dataValues.first_name} ${user.dataValues.last_name} has logged in with ${user.dataValues.email}.`);
           res.send(token);
+        } else {
+          res.send({ error: 'Invalid password' });
         }
       } else {
-        res.status(400).json({ error: 'User does not exist' });
+        res.send({ error: 'User does not exist' });
       }
     })
     .catch((err) => {

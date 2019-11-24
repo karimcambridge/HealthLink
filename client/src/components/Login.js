@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect } from 'react-router-dom';
 import { isAuthenticated, login } from './UserFunctions';
 import Toast from 'react-bootstrap/Toast';
 
@@ -28,10 +27,11 @@ class Login extends Component {
         }
     }
 
-    promptLoginFailure() {
+    promptLoginFailure(errorMessage) {
         this.setState({
             errors: {
-                loginFailed: true
+                loginFailed: true,
+                errorMessage: errorMessage
             }
         });
         setTimeout(() => {
@@ -56,20 +56,25 @@ class Login extends Component {
         };
 
         login(user)
-            .then(res => {
-                if (res) {
+            .then(response => {
+                if (response) {
+                    if (response.hasOwnProperty('error')) {
+                        this.promptLoginFailure(response.error);
+                        console.log('Login failed 0');
+                        return;
+                    }
                     //this.setState(() => ({
                     //    redirectToReferrer: true
                     //}));
                     this.props.history.push(`/profile`);
                 } else {
                     this.promptLoginFailure();
-                    console.log('Login failed 0');
+                    console.log('Login failed 1');
                 }
             })
             .catch(err => {
                 this.promptLoginFailure();
-                console.log('Login failed 1');
+                console.log('Login failed 2');
             })
     }
 
@@ -93,7 +98,7 @@ class Login extends Component {
                     <Toast.Body style={{
                         textAlign: "center",
                     }}>
-                        Invalid credentials.
+                        { this.state.errors.errorMessage ? this.state.errors.errorMessage : 'Invalid credentials.' }
                     </Toast.Body>
                 </Toast>
             </div>
@@ -140,7 +145,7 @@ class Login extends Component {
                             Need to request an account?&nbsp;
                             <a href="/register">Click here</a>
                         </div>
-                        {this.state.errors.loginFailed === true ? failedLoginNotification : null}
+                        { this.state.errors.loginFailed === true ? failedLoginNotification : null }
                     </div>
                 </div>
             </div>
