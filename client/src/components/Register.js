@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { isAuthenticated, register } from './UserFunctions';
+import { isAuthenticated, register } from './functions/UserFunctions';
 
 class Register extends Component {
     constructor() {
