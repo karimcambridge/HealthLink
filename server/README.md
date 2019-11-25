@@ -1,4 +1,4 @@
-# HealthLink
+# HealthLink Server
 
 Maintained by
 
@@ -10,7 +10,20 @@ Maintained by
 
 > [Cody Ince](https://github.com/Cod-yBanks)
 
+### Build Setup
+
+* open powershell
+
+###### install dependencies
+* npm install
+
+###### to test in development mode
+* npm run dev
+
+###### to run in production mode
+* npm run test
+
 ### Credits
 
-> Build with ❤️ using [React](https://reactjs.org/) and various other tools.
-> Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* mariadb
+* sequelize
