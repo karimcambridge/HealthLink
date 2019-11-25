@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
+import PatientSearch from './PatientSearch';
 import { getUserToken } from './functions/UserFunctions';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Profile extends Component {
     constructor() {
@@ -52,9 +54,11 @@ class Profile extends Component {
                     </Col>
                     <Col md={4}>
                             <div class="mt-1">
-                                <Button variant="primary" size="lg" active>
-                                    Find Patient
+                                <Link to="/patientsearch">
+                                    <Button variant="primary" size="lg" active>
+                                        Find Patient
                                     </Button>
+                                </Link>
                             </div>
                             <div class="mt-5">
                                 <Button variant="primary" size="lg" active>

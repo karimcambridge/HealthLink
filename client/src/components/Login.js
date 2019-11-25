@@ -11,7 +11,6 @@ class Login extends Component {
             errors: {
                 loginFailed: false
             },
-            //redirectToReferrer: false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -20,9 +19,6 @@ class Login extends Component {
 
     componentDidMount() {
         if (isAuthenticated()) {
-            //this.setState(() => ({
-            //    redirectToReferrer: true
-            //}));
             this.props.history.push(`/profile`);
         }
     }
@@ -63,9 +59,6 @@ class Login extends Component {
                         console.log('Login failed 0');
                         return;
                     }
-                    //this.setState(() => ({
-                    //    redirectToReferrer: true
-                    //}));
                     this.props.history.push(`/profile`);
                 } else {
                     this.promptLoginFailure();
@@ -79,10 +72,6 @@ class Login extends Component {
     }
 
     render() {
-        //if (this.state.redirectToReferrer === true) {
-        //    return <Redirect to={{ pathname: '/profile', state: { from: this.props.location } }} />;
-        //}
-
         const failedLoginNotification = (
             <div>
                 <Toast style={{

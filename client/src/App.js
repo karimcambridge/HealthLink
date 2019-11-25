@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import PatientSearch from './components/PatientSearch';
 import { isAuthenticated } from './components/functions/UserFunctions';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/patientsearch" component={PatientSearch} />
           </div>
         </div>
       </Router>
