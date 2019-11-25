@@ -12,7 +12,75 @@ class Register extends Component {
             password: '',
             title: 'Dr',
             role: 'General Practitioner',
-            errors: {}
+            roles: [
+                'Allergist',
+                'Anaesthesiologist',
+                'Andrologist',
+                'Cardiologist',
+                'Cardiac Electrophysiologist',
+                'Dermatologist',
+                'Emergency Room (ER) Doctors',
+                'Endocrinologist',
+                'Epidemiologist',
+                'Family Medicine Physician',
+                'Gastroenterologist',
+                'General Practitioner',
+                'Geriatrician',
+                'Hyperbaric Physician',
+                'Hematologist',
+                'Hepatologist',
+                'Immunologist',
+                'Infectious Disease Specialist',
+                'Intensivist',
+                'Internal Medicine Specialist',
+                'Maxillofacial Surgeon / Oral Surgeon',
+                'Medical Examiner',
+                'Medical Geneticist',
+                'Neonatologist',
+                'Nephrologist',
+                'Neurologist',
+                'Neurosurgeon',
+                'Nuclear Medicine Specialist',
+                'Nurse Practitioner',
+                'Obstetrician/Gynecologist (OB/GYN)',
+                'Occupational Medicine Specialist',
+                'Oncologist',
+                'Ophthalmologist',
+                'Orthopedic Surgeon / Orthopedist',
+                'Otolaryngologist (also ENT Specialist)',
+                'Parasitologist',
+                'Pathologist',
+                'Perinatologist',
+                'Periodontist',
+                'Pediatrician',
+                'Physiatrist',
+                'Plastic Surgeon',
+                'Psychiatrist',
+                'Pulmonologist',
+                'Radiologist',
+                'Rheumatologist',
+                'Sleep Doctor / Sleep Disorders Specialist',
+                'Spinal Cord Injury Specialist',
+                'Sports Medicine Specialist',
+                'Surgeon',
+                'Thoracic Surgeon',
+                'Urologist',
+                'Vascular Surgeon',
+                'Veterinarian',
+                'Acupuncturist',
+                'Audiologist',
+                'Ayurvedic Practioner',
+                'Chiropractor',
+                'Diagnostician',
+                'Homeopathic Doctor',
+                'Microbiologist',
+                'Naturopathic Doctor',
+                'Palliative care specialist',
+                'Pharmacist',
+                'Physiotherapist',
+                'Podiatrist / Chiropodist'
+            ],
+            errors: {},
         }
 
         this.onChange = this.onChange.bind(this);
@@ -113,71 +181,7 @@ class Register extends Component {
                             <div className="form-group">
                                 <label htmlFor="name">Role</label>
                                 <select class="form-control" id="role" name="role" value={this.state.role} onChange={this.onChange} required>
-                                    <option>Allergist</option>
-                                    <option>Anaesthesiologist</option>
-                                    <option>Andrologist</option>
-                                    <option>Cardiologist</option>
-                                    <option>Cardiac Electrophysiologist</option>
-                                    <option>Dermatologist</option>
-                                    <option>Emergency Room (ER) Doctors</option>
-                                    <option>Endocrinologist</option>
-                                    <option>Epidemiologist</option>
-                                    <option>Family Medicine Physician</option>
-                                    <option>Gastroenterologist</option>
-                                    <option>General Practitioner</option>
-                                    <option>Geriatrician</option>
-                                    <option>Hyperbaric Physician</option>
-                                    <option>Hematologist</option>
-                                    <option>Hepatologist</option>
-                                    <option>Immunologist</option>
-                                    <option>Infectious Disease Specialist</option>
-                                    <option>Intensivist</option>
-                                    <option>Internal Medicine Specialist</option>
-                                    <option>Maxillofacial Surgeon / Oral Surgeon</option>
-                                    <option>Medical Examiner</option>
-                                    <option>Medical Geneticist</option>
-                                    <option>Neonatologist</option>
-                                    <option>Nephrologist</option>
-                                    <option>Neurologist</option>
-                                    <option>Neurosurgeon</option>
-                                    <option>Nuclear Medicine Specialist</option>
-                                    <option>Obstetrician/Gynecologist (OB/GYN)</option>
-                                    <option>Occupational Medicine Specialist</option>
-                                    <option>Oncologist</option>
-                                    <option>Ophthalmologist</option>
-                                    <option>Orthopedic Surgeon / Orthopedist</option>
-                                    <option>Otolaryngologist (also ENT Specialist)</option>
-                                    <option>Parasitologist</option>
-                                    <option>Pathologist</option>
-                                    <option>Perinatologist</option>
-                                    <option>Periodontist</option>
-                                    <option>Pediatrician</option>
-                                    <option>Physiatrist</option>
-                                    <option>Plastic Surgeon</option>
-                                    <option>Psychiatrist</option>
-                                    <option>Pulmonologist</option>
-                                    <option>Radiologist</option>
-                                    <option>Rheumatologist</option>
-                                    <option>Sleep Doctor / Sleep Disorders Specialist</option>
-                                    <option>Spinal Cord Injury Specialist</option>
-                                    <option>Sports Medicine Specialist</option>
-                                    <option>Surgeon</option>
-                                    <option>Thoracic Surgeon</option>
-                                    <option>Urologist</option>
-                                    <option>Vascular Surgeon</option>
-                                    <option>Veterinarian</option>
-                                    <option>Acupuncturist</option>
-                                    <option>Audiologist</option>
-                                    <option>Ayurvedic Practioner</option>
-                                    <option>Chiropractor</option>
-                                    <option>Diagnostician</option>
-                                    <option>Homeopathic Doctor</option>
-                                    <option>Microbiologist</option>
-                                    <option>Naturopathic Doctor</option>
-                                    <option>Palliative care specialist</option>
-                                    <option>Pharmacist</option>
-                                    <option>Physiotherapist</option>
-                                    <option>Podiatrist / Chiropodist</option>
+                                    { this.state.roles.map(role => <option>{role}</option>) }
                                 </select>
                             </div>
                             <button
