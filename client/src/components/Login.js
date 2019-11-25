@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isAuthenticated, login } from './UserFunctions';
+import { isAuthenticated, login } from './functions/UserFunctions';
 import Toast from 'react-bootstrap/Toast';
 
 class Login extends Component {

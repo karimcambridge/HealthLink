@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { isAuthenticated, logOut } from './UserFunctions';
+import { isAuthenticated, logOut } from './functions/UserFunctions';
 
 class Navbar extends Component {
     userLogout(e) {
