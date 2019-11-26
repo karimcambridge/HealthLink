@@ -116,7 +116,7 @@ class PrescriptionList extends Component {
             <div>
                 <Row>
                     <Col sm={12} mb={3}>
-                        <Search placeholder="Describe the precription you are looking for..." list={this.state.prescriptions} filterList={(query, prescription) => (query.length && this.customSearchHandler(query, prescription))} onListUpdate={(prescriptions, query) => this.setState({ visiblePrescriptions: prescriptions, query: query })} />
+                        <Search placeholder="Describe the precription you are looking for..." list={this.state.prescriptions} filterList={(query, prescription) => (query.length && this.customSearchHandler(query, prescription))} onListUpdate={(prescriptions, query) => this.setState({ visiblePrescriptions: prescriptions, query: query })} disabled={!this.state.preloaded} />
                     </Col>
                 </Row>
                 <Row>

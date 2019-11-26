@@ -101,7 +101,7 @@ class PatientsList extends Component {
 			<div>
 				<Row>
 					<Col sm={12} mb={3}>
-						<Search placeholder="Enter a patient's national ID, first name or last name to search" list={this.state.patients} filterList={(query, patient) => (query.length && this.customSearchHandler(query, patient))} onListUpdate={(patients, query) => this.setState({ visiblePatients: patients, query: query })} />
+						<Search placeholder="Enter a patient's national ID, first name or last name to search" list={this.state.patients} filterList={(query, patient) => (query.length && this.customSearchHandler(query, patient))} onListUpdate={(patients, query) => this.setState({ visiblePatients: patients, query: query })} disabled={!this.state.preloaded} />
 					</Col>
 				</Row>
 				<Row>
