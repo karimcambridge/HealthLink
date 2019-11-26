@@ -37,8 +37,7 @@ class Profile extends Component {
         return (
             <Container>
                 <Row>
-                    <Col md={8}>
-                        <div className="mt-1"></div>
+                    <Col md={8} className="mt-4 mx-auto">
                         <Card style={{ width: '18rem' }} >
                             <Card.Header>Profile</Card.Header>
                             <Card.Img variant="top" width="64" height="200" src="https://vignette.wikia.nocookie.net/goanimate-v2/images/d/d3/Crash_Bandicoot_-_PS3_Avatar.png/revision/latest/scale-to-width-down/185?cb=20180721082645" />
@@ -51,19 +50,19 @@ class Profile extends Component {
                             </ListGroup>
                         </Card>
                     </Col>
-                    <Col md={4}>
-                            <div className="mt-1">
-                                <Link to="/patientsearch">
-                                    <Button variant="primary" size="lg" active>
-                                        Find Patient
-                                    </Button>
-                                </Link>
-                            </div>
-                            <div className="mt-5">
-                                <Button variant="primary" size="lg" active>
-                                    Find Prescription
+                    <Col md={4} className="mt-4 mx-auto">
+                        <div>
+                            <Link to="/patientsearch">
+                                <Button variant="primary" size="lg">
+                                    Find Patient
                                 </Button>
-                            </div>
+                            </Link>
+                        </div>
+                        <div className="mt-5">
+                            <Button variant="primary" size="lg">
+                                Find Prescription
+                            </Button>
+                        </div>
                     </Col>
                 </Row>
             </Container>

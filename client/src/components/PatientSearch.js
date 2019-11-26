@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import Search from './helpers/Search';
 import Moment from 'moment';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 class Patient extends Component {
     render() {
         return (
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="#">{this.props.patient.first_name} {this.props.patient.last_name}</a></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{this.props.patient.dob}</h6>
-                    <p class="card-text">{this.props.patient.national_id}</p>
-                </div>
-            </div>
+            <Card>
+                <Card.Body>
+                    <Card.Title><a href="#">{this.props.patient.first_name} {this.props.patient.last_name}</a></Card.Title>
+                    <ListGroup horizontal>
+                        <ListGroup.Item><strong>National ID:</strong> {this.props.patient.national_id}</ListGroup.Item>
+                        <ListGroup.Item><strong>Date of Birth:</strong> {this.props.patient.dob}</ListGroup.Item>
+                    </ListGroup>
+                </Card.Body>
+            </Card>
         );
     }
 }
@@ -46,18 +54,18 @@ class PatientsList extends Component {
     render() {
         return (
             <div>
-                <div class="row">
-                    <div class="col-sm-12 mb-3">
+                <Row>
+                    <Col sm={12} mb={3}>
                         <Search placeholder="Enter a patient's national ID, first name or last name to search" list={this.state.patients} filterList={(query, patient) => (query.length && (patient.national_id.toLowerCase().search(query) !== -1 || patient.first_name.toLowerCase().search(query) !== -1 || patient.last_name.toLowerCase().search(query) !== -1))} onListUpdate={patients => this.setState({ visiblePatients: patients })} />
-                    </div>
-                </div>
-                <div class="row" id="myItems">
-                    <div class="col-sm-12 mb-3">
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={12} mb={3}>
                         {this.state.visiblePatients ? this.state.visiblePatients.map(patient => {
                             return <Patient patient={patient} key={patient.id} />;
                         }) : 'Empty'}
-                    </div>
-                </div>
+                    </Col>
+                </Row>
             </div>
         );
     }
@@ -71,27 +79,26 @@ class PatientSearch extends Component {
         };
 
         this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit(e) {
-    }
-
     render() {
-        
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-6 mt-5 mx-auto">
-                        <div className="mt-3"></div>
+            <Container>
+                <Row>
+                    <Col sm={10} className="mt-4 mx-auto">
                         <PatientsList />
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                    <Col sm={2} className="mt-4 mx-auto">
+                        <Button variant="danger" size="md">
+                            Create Patient
+                        </Button>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
