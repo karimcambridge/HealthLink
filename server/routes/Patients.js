@@ -58,4 +58,18 @@ patients.get('/get', (req, res) => {
     });
 });
 
+patients.get('/getall', (req, res) => {
+  Patient.findAll()
+    .then((patients) => {
+      if (patients) {
+        res.json(patients);
+      } else {
+        res.send({ error: 'Getting all patients error' });
+      }
+    })
+    .catch((err) => {
+      res.send(`error: ${err}`);
+    });
+});
+
 module.exports = patients;
