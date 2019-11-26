@@ -59,9 +59,11 @@ class Profile extends Component {
                             </Link>
                         </div>
                         <div className="mt-5">
-                            <Button variant="primary" size="lg">
-                                Find Prescription
-                            </Button>
+                            <Link to="/prescriptionsearch">
+                                <Button variant="info" size="lg">
+                                    Find Prescription
+                                </Button>
+                            </Link>
                         </div>
                     </Col>
                 </Row>

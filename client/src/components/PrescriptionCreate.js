@@ -1,20 +1,19 @@
 
 import React, { Component } from 'react';
-import { create } from './functions/PatientFunctions';
+import { create } from './functions/PrescriptionFunctions';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-class PatientCreate extends Component {
+class PrescriptionCreate extends Component {
     constructor() {
         super();
         this.state = {
-            national_id: '',
-            title: 'Mr',
+            patient_id: '',
             first_name: '',
             last_name: '',
-            dob: '',
-            phone_no: '',
             address: '',
+            drug_names: '',
+            note: '',
             errors: {},
         }
 
@@ -33,23 +32,30 @@ class PatientCreate extends Component {
         e.preventDefault()
 
         const
-            contact_information = {}
+            data = {}
         ;
-        if (this.state.phone_no.length) {
-            contact_information.phone_no_1 = this.state.phone_no;
+        if (this.state.first_name.length) {
+            data.first_name = this.state.first_name;
+        }
+        if (this.state.last_name.length) {
+            data.last_name = this.state.last_name;
+        }
+        if (this.state.address.length) {
+            data.address = this.state.address;
+        }
+        if (this.state.drug_names.length) {
+            data.drug_names = this.state.drug_names;
+        }
+        if (this.state.note.length) {
+            data.note = this.state.note;
         }
         const newPatient = {
-            national_id: this.state.national_id === '' ? null : this.state.national_id,
-            title: this.state.title,
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            dob: this.state.dob,
-            contact_information: Object.keys(contact_information).length ? JSON.stringify(contact_information) : null,
-            address: this.state.address === '' ? null : this.state.address,
+            patient_id: this.state.patient_id === '' ? null : this.state.patient_id,
+            data: Object.keys(data).length ? JSON.stringify(data) : null,
         }
 
         create(newPatient).then(res => {
-            this.props.history.push(`/patientsearch`);
+            this.props.history.push(`/prescriptionsearch`);
         });
     }
 
@@ -60,25 +66,15 @@ class PatientCreate extends Component {
                     <div className="col-md-6 mt-4 mx-auto">
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
-                                <label htmlFor="name">National ID</label>
+                                <label htmlFor="name">Search for a patient</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    name="national_id"
-                                    placeholder="Enter their national ID (leave blank if none)"
-                                    value={this.state.national_id}
+                                    name="patient_id"
+                                    placeholder="Enter a patient's details (leave blank if none)"
+                                    value={this.state.patient_id}
                                     onChange={this.onChange}
-                                    required
                                 />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="name">Title</label>
-                                <select className="form-control" id="title" name="title" value={this.state.title} onChange={this.onChange} required>
-                                    <option>Mr</option>
-                                    <option>Mrs</option>
-                                    <option>Miss / Ms</option>
-                                    <option>Dr</option>
-                                </select>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="name">First name</label>
@@ -105,32 +101,6 @@ class PatientCreate extends Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="name">Date of Birth</label>
-                                <input
-                                    type="date"
-                                    className="form-control"
-                                    name="dob"
-                                    placeholder="Enter their date of birth"
-                                    value={this.state.dob}
-                                    onChange={this.onChange}
-                                    min='1920-01-01'
-                                    max='2020-12-12'
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="name">Phone #</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    name="phone_no"
-                                    placeholder="Enter their phone no."
-                                    value={this.state.phone_no}
-                                    onChange={this.onChange}
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
                                 <label htmlFor="name">Address</label>
                                 <input
                                     type="text"
@@ -142,11 +112,34 @@ class PatientCreate extends Component {
                                     required
                                 />
                             </div>
+                            <div className="form-group">
+                                <label htmlFor="name">Drug names (Products) and their amounts</label>
+                                <textarea
+                                    rows="3"
+                                    className="form-control"
+                                    name="drug_names"
+                                    placeholder="Enter the name of the drugs and their amounts"
+                                    value={this.state.drug_names}
+                                    onChange={this.onChange}
+                                    required
+                                ></textarea>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="name">Note</label>
+                                <textarea
+                                    rows="3"
+                                    className="form-control"
+                                    name="note"
+                                    placeholder="Enter any extra notes, if any"
+                                    value={this.state.note}
+                                    onChange={this.onChange}
+                                ></textarea>
+                            </div>
                             <button
                                 type="submit"
                                 className="btn btn-lg btn-primary btn-block"
                             >
-                                Create Patient
+                                Create Prescription
                             </button>
                         </form>
                     </div>
@@ -156,4 +149,4 @@ class PatientCreate extends Component {
     }
 }
 
-export default PatientCreate;
+export default PrescriptionCreate;

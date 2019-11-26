@@ -12,9 +12,17 @@ prescriptions.post('/create', (req, res) => {
   const today = new Date();
   const prescriptionData = {
     id: null,
-    data: null,
     created: today,
+    data: req.body.data,
+    patient_id: req.body.patient_id,
   };
+  Prescription.create(prescriptionData)
+    .then((created) => {
+      res.json({ status: `prescription (${created.id}) ${created.first_name} ${created.last_name} created!` });
+    })
+    .catch((authErr) => {
+      res.send(`error: ${authErr}`);
+    });
 });
 
 prescriptions.get('/get', (req, res) => {
