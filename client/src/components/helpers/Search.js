@@ -26,7 +26,7 @@ class Search extends Component {
     render() {
         return (
             <form>
-                <input value={this.state.query} type="text" className="form-control" placeholder={this.props.placeholder} onChange={this.handleInputChange} disabled={(this.props.disabled) ? "disabled" : ""}/>
+                <input value={this.state.query} type="text" className="form-control" placeholder={this.props.placeholder} onChange={this.handleInputChange} disabled={this.props.disabled}/>
             </form>
         );
     }
