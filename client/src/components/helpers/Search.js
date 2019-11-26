@@ -14,18 +14,19 @@ class Search extends Component {
     }
 
     handleInputChange = (event) => {
-        this.setState({ query: event.currentTarget.value });
-        const { list, filterList, onListUpdate } = this.props;
+        this.setState({ query: event.target.value }, () => {
+            const { list, filterList, onListUpdate } = this.props;
 
-        const filteredList = list.filter(field => filterList(this.state.query, field));
+            const filteredList = list.filter(field => filterList(this.state.query, field));
 
-        onListUpdate(filteredList, this.state.query);
+            onListUpdate(filteredList, this.state.query);
+        });
     };
 
     render() {
         return (
             <form>
-                <input value={this.state.query ? this.state.query : ''}  type="text" className="form-control" placeholder={this.props.placeholder} onChange={this.handleInputChange} />
+                <input value={this.state.query}  type="text" className="form-control" placeholder={this.props.placeholder} onChange={this.handleInputChange} />
             </form>
         );
     }
