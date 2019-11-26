@@ -34,7 +34,7 @@ class Navbar extends Component {
                     <span className="navbar-toggler-icon" />
                 </button>
 
-                <div id="mainNavBar" class="collapse navbar-collapse">
+                <div id="mainNavBar" className="collapse navbar-collapse">
                     <div className="collapse navbar-collapse justify-content-md-center">
                         <ul className="navbar-nav">
                             <li className="nav-item">

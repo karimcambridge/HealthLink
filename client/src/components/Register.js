@@ -123,7 +123,7 @@ class Register extends Component {
                             <h1 className="h3 mb-3 font-weight-normal">Register</h1>
                             <div className="form-group">
                                 <label htmlFor="name">Title</label>
-                                <select class="form-control" id="title" name="title" value={this.state.title} onChange={this.onChange} required>
+                                <select className="form-control" id="title" name="title" value={this.state.title} onChange={this.onChange} required>
                                     <option selected>Mr</option>
                                     <option>Mrs</option>
                                     <option>Miss / Ms</option>
@@ -180,7 +180,7 @@ class Register extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="name">Role</label>
-                                <select class="form-control" id="role" name="role" value={this.state.role} onChange={this.onChange} required>
+                                <select className="form-control" id="role" name="role" value={this.state.role} onChange={this.onChange} required>
                                     { this.state.roles.map(role => <option>{role}</option>) }
                                 </select>
                             </div>
@@ -191,7 +191,7 @@ class Register extends Component {
                                 Register!
                             </button>
                         </form>
-                        <div class="mt-1 float-right">
+                        <div className="mt-1 float-right">
                             Already have an account?&nbsp;
                             <a href="/login">Click here to login</a>
                         </div>

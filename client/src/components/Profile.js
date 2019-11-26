@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
-import PatientSearch from './PatientSearch';
 import { getUserToken } from './functions/UserFunctions';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -39,7 +38,7 @@ class Profile extends Component {
             <Container>
                 <Row>
                     <Col md={8}>
-                        <div class="mt-1"></div>
+                        <div className="mt-1"></div>
                         <Card style={{ width: '18rem' }} >
                             <Card.Header>Profile</Card.Header>
                             <Card.Img variant="top" width="64" height="200" src="https://vignette.wikia.nocookie.net/goanimate-v2/images/d/d3/Crash_Bandicoot_-_PS3_Avatar.png/revision/latest/scale-to-width-down/185?cb=20180721082645" />
@@ -53,14 +52,14 @@ class Profile extends Component {
                         </Card>
                     </Col>
                     <Col md={4}>
-                            <div class="mt-1">
+                            <div className="mt-1">
                                 <Link to="/patientsearch">
                                     <Button variant="primary" size="lg" active>
                                         Find Patient
                                     </Button>
                                 </Link>
                             </div>
-                            <div class="mt-5">
+                            <div className="mt-5">
                                 <Button variant="primary" size="lg" active>
                                     Find Prescription
                                 </Button>

@@ -97,7 +97,7 @@ class Login extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6 mt-5 mx-auto">
-                        <div class="mt-3"></div>
+                        <div className="mt-3"></div>
                         <form onSubmit={this.onSubmit} errors={this.state.errors}>
                             <div className="form-group">
                                 <label htmlFor="email">Email address</label>
@@ -130,7 +130,7 @@ class Login extends Component {
                                 Sign in
                             </button>
                         </form>
-                        <div class="mt-1 float-right">
+                        <div className="mt-1 float-right">
                             Need to request an account?&nbsp;
                             <a href="/register">Click here</a>
                         </div>
