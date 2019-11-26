@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 class Search extends Component {
     componentDidMount() {
-        const { list, filterList, onListUpdate } = this.props;
+        const { placeholder, list, filterList, onListUpdate } = this.props;
         onListUpdate(list);
     }
 
     handleInputChange = (event) => {
         const query = event.currentTarget.value;
-        const { list, filterList, onListUpdate } = this.props;
+        const { placeholder, list, filterList, onListUpdate } = this.props;
 
         const filteredList = list.filter(field => filterList(query, field));
 
@@ -18,7 +18,7 @@ class Search extends Component {
     render() {
         return (
             <form>
-                <input onChange={this.handleInputChange} />
+                <input type="text" class="form-control" placeholder={this.props.placeholder} onChange={this.handleInputChange} />
             </form>
         );
     }
