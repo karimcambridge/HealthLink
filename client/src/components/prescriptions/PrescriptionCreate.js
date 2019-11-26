@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { create } from './functions/PrescriptionFunctions';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 class PrescriptionCreate extends Component {
     constructor() {
@@ -19,9 +21,7 @@ class PrescriptionCreate extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    componentDidMount() {
+        this.onGoBack = this.onGoBack.bind(this);
     }
 
     onChange(e) {
@@ -29,7 +29,7 @@ class PrescriptionCreate extends Component {
     }
 
     onSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
 
         const
             data = {}
@@ -59,11 +59,22 @@ class PrescriptionCreate extends Component {
         });
     }
 
+    onGoBack(e) {
+        e.preventDefault();
+ 
+        this.props.history.goBack();
+    }
+
     render() {
         return (
             <Container>
                 <Row>
-                    <div className="col-md-6 mt-4 mx-auto">
+                    <Col md="auto" className="mt-4">
+                        <Button variant="info" size="lg" onClick={this.onGoBack}>
+                            Go Back
+                        </Button>
+                    </Col>
+                    <Col md="7" className="mt-4 mx-auto mb-4">
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label htmlFor="name">Search for a patient</label>
@@ -142,7 +153,7 @@ class PrescriptionCreate extends Component {
                                 Create Prescription
                             </button>
                         </form>
-                    </div>
+                    </Col>
                 </Row>
             </Container>
         )

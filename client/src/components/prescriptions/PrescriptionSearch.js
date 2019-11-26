@@ -116,7 +116,7 @@ class PrescriptionList extends Component {
             <div>
                 <Row>
                     <Col sm={12} mb={3}>
-                        <Search placeholder="Enter a some details about the prescription" list={this.state.prescriptions} filterList={(query, prescription) => (query.length && this.customSearchHandler(query, prescription))} onListUpdate={(prescriptions, query) => this.setState({ visiblePrescriptions: prescriptions, query: query })} />
+                        <Search placeholder="Describe the precription you are looking for..." list={this.state.prescriptions} filterList={(query, prescription) => (query.length && this.customSearchHandler(query, prescription))} onListUpdate={(prescriptions, query) => this.setState({ visiblePrescriptions: prescriptions, query: query })} />
                     </Col>
                 </Row>
                 <Row>
@@ -145,20 +145,32 @@ class PrescriptionSearch extends Component {
         };
 
         this.onChange = this.onChange.bind(this);
+        this.onGoBack = this.onGoBack.bind(this);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    onGoBack(e) {
+        e.preventDefault();
+
+        this.props.history.goBack();
+    }
+
     render() {
         return (
             <Container>
                 <Row>
-                    <Col sm={10} className="mt-4 mx-auto">
+                    <Col sm={1} className="mt-4">
+                        <Button variant="info" size="lg" onClick={this.onGoBack}>
+                            Go Back
+                        </Button>
+                    </Col>
+                    <Col sm={8} className="mt-4 mx-auto">
                         <PrescriptionList />
                     </Col>
-                    <Col sm={2} className="mt-4 mx-auto">
+                    <Col sm={1} className="mt-4 mx-auto">
                         <Link to="/prescriptioncreate">
                             <Button variant="danger" size="md">
                                 Create Prescription

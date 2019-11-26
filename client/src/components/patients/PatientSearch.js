@@ -130,20 +130,32 @@ class PatientSearch extends Component {
 		};
 
 		this.onChange = this.onChange.bind(this);
+		this.onGoBack = this.onGoBack.bind(this);
 	}
 
 	onChange(e) {
 		this.setState({ [e.target.name]: e.target.value })
 	}
 
+	onGoBack(e) {
+		e.preventDefault();
+
+		this.props.history.goBack();
+	}
+
 	render() {
 		return (
 			<Container>
 				<Row>
-					<Col sm={10} className="mt-4 mx-auto">
+					<Col sm={1} className="mt-4">
+						<Button variant="info" size="lg" onClick={this.onGoBack}>
+							Go Back
+                        </Button>
+					</Col>
+					<Col sm={8} className="mt-4 mx-auto">
 						<PatientsList />
 					</Col>
-					<Col sm={2} className="mt-4 mx-auto">
+					<Col sm={1} className="mt-4 mx-auto">
 						<Link to="/patientcreate">
 							<Button variant="danger" size="md">
 								Create Patient
