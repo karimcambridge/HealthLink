@@ -14,7 +14,7 @@ class Search extends Component {
     }
 
     handleInputChange = (event) => {
-        this.state.query = event.currentTarget.value;
+        this.setState({ query: event.currentTarget.value });
         const { list, filterList, onListUpdate } = this.props;
 
         const filteredList = list.filter(field => filterList(this.state.query, field));

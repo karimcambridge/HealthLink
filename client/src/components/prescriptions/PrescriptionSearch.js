@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Search from './helpers/Search';
+import Search from '../helpers/Search';
 import Moment from 'moment';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';

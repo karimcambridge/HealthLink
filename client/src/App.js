@@ -6,10 +6,10 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
-import PatientSearch from './components/PatientSearch';
-import PatientCreate from './components/PatientCreate';
-import PrescriptionCreate from './components/PrescriptionCreate';
-import PrescriptionSearch from './components/PrescriptionSearch';
+import PatientSearch from './components/patients/PatientSearch';
+import PatientCreate from './components/patients/PatientCreate';
+import PrescriptionCreate from './components/prescriptions/PrescriptionCreate';
+import PrescriptionSearch from './components/prescriptions/PrescriptionSearch';
 import { isAuthenticated } from './components/functions/UserFunctions';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
