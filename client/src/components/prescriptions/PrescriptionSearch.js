@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Search from '../helpers/Search';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Moment from 'moment';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,19 +7,44 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { getAllPrescriptions } from './functions/PrescriptionFunctions';
+import Search from '../helpers/Search';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+class FailedSearchCritera extends Component {
+    render() {
+        return (
+            this.props.preloaded === false
+                ? (
+                    <FontAwesomeIcon style={{ display: 'flex', height: '20vh' }} className="mx-auto" icon="spinner" size="2x" pulse />
+                )
+                : this.props.empty
+                    ? (
+                        <Card>
+                            <Card.Header>
+                                <Card.Title>
+                                    There are currently no prescriptions in the database.
+							</Card.Title>
+                            </Card.Header>
+                        </Card>
+                    )
+                    : this.props.query.length ? (
+                        <Card>
+                            <Card.Header>
+                                <Card.Title>
+                                    No prescriptions found with the search criteria '{this.props.query}'
+							</Card.Title>
+                            </Card.Header>
+                        </Card>
+                    )
+                        : ''
+        );
+    }
+}
 
 class Prescription extends Component {
-    humanize(str) {
-        const frags = str.split('_');
-        for (let i = 0; i < frags.length; ++i) {
-            frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-        }
-        return frags.join(' ');
-    }
-
-    parsedContactInformation() {
-        return JSON.parse(this.props.patient.contact_information);
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -27,13 +52,15 @@ class Prescription extends Component {
             <Card>
                 <Card.Body>
                     <Card.Title>
-                        {this.props.patient.first_name} {this.props.patient.last_name}
+                        <Link to={`prescription/${this.props.prescription.id}`}>
+                            {this.props.prescription.parsedData.first_name} {this.props.prescription.parsedData.last_name}
+                        </Link>
                     </Card.Title>
                     <ListGroup horizontal>
-                        <ListGroup.Item><strong>National ID:</strong> {this.props.patient.national_id}</ListGroup.Item>
-                        <ListGroup.Item><strong>Date of Birth:</strong> {this.props.patient.dob}</ListGroup.Item>
-                        {this.props.patient.address ? <ListGroup.Item><strong>Address:</strong> {this.props.patient.address}</ListGroup.Item> : ''}
-                        {this.props.patient.contact_information ? <ListGroup.Item><strong>Contact Information:</strong> {this.parsedContactInformation()['phone_no_1']}</ListGroup.Item> : ''}
+                        <ListGroup.Item><strong>Date created:</strong> {this.props.prescription.created}</ListGroup.Item>
+                        {this.props.prescription.parsedData.address ? <ListGroup.Item><strong>Address:</strong> {this.props.prescription.parsedData.address}</ListGroup.Item> : ''}
+                        {this.props.prescription.parsedData.drug_names ? <ListGroup.Item><strong>Drug Information:</strong> {this.props.prescription.parsedData.drug_names}</ListGroup.Item> : ''}
+                        {this.props.prescription.parsedData.note ? <ListGroup.Item><strong>Note:</strong> {this.props.prescription.parsedData.note}</ListGroup.Item> : ''}
                     </ListGroup>
                 </Card.Body>
             </Card>
@@ -45,27 +72,43 @@ class PrescriptionList extends Component {
     constructor() {
         super();
         this.state = {
-            patients: [],
-            visiblePatients: []
+            preloaded: false,
+            prescriptions: [],
+            visiblePrescriptions: [],
+            query: ''
         }
     }
 
     componentDidMount() {
-        this.fetchData();
-        this.setState({ visiblePatients: [] });
+        getAllPrescriptions()
+            .then(parsedJSON => {
+                parsedJSON.forEach(prescription => {
+                    prescription.created = Moment(prescription.created).utc().format('YYYY-MM-DD');
+                    prescription.parsedData = this.formatPrescriptionData(prescription);
+                });
+                this.setState({ preloaded: true, prescriptions: parsedJSON, visiblePrescriptions: [] });
+                console.log('[PRESCRIPTIONS LOADED]: ' + JSON.stringify(this.state.prescriptions));
+            })
+            .catch(error => console.log(error))
+        ;
     }
 
-    fetchData() {
-        return fetch('/patients/getall')
-            .then(response => response.json())
-            .then(parsedJSON => {
-                parsedJSON.forEach(patient => {
-                    patient.dob = Moment(patient.dob).utc().format('YYYY-MM-DD');
-                });
-                this.setState({ patients: parsedJSON });
-                console.log('data fetched ' + JSON.stringify(this.state.patients));
-            })
-            .catch(error => console.log(error));
+    formatPrescriptionData(prescription) {
+        const
+            data = JSON.parse(prescription.data),
+            parsedData = {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                address: data.address,
+                drug_names: data.drug_names,
+                note: data.note
+            }
+        ;
+        return parsedData;
+    }
+
+    customSearchHandler(query, prescription) {
+        return (prescription.parsedData.drug_names.toLowerCase().search(query) !== -1 || prescription.parsedData.first_name.toLowerCase().search(query) !== -1 || prescription.parsedData.last_name.toLowerCase().search(query) !== -1)
     }
 
     render() {
@@ -73,14 +116,20 @@ class PrescriptionList extends Component {
             <div>
                 <Row>
                     <Col sm={12} mb={3}>
-                        <Search placeholder="Enter a prescription date or patient details" list={this.state.patients} filterList={(query, patient) => (query.length && (patient.national_id.toLowerCase().search(query) !== -1 || patient.first_name.toLowerCase().search(query) !== -1 || patient.last_name.toLowerCase().search(query) !== -1))} onListUpdate={patients => this.setState({ visiblePatients: patients })} />
+                        <Search placeholder="Enter a some details about the prescription" list={this.state.prescriptions} filterList={(query, prescription) => (query.length && this.customSearchHandler(query, prescription))} onListUpdate={(prescriptions, query) => this.setState({ visiblePrescriptions: prescriptions, query: query })} />
                     </Col>
                 </Row>
                 <Row>
                     <Col sm={12} mb={3}>
-                        {this.state.visiblePatients ? this.state.visiblePatients.map(patient => {
-                            return <Prescription patient={patient} key={patient.id} />;
-                        }) : 'Empty'}
+                        {
+                            this.state.preloaded && this.state.prescriptions.length
+                                ? (this.state.visiblePrescriptions.length && this.state.query.length
+                                    ? this.state.visiblePrescriptions.map(prescription => {
+                                        return <Prescription prescription={prescription} key={prescription.id} />;
+                                    })
+                                    : <FailedSearchCritera query={this.state.query} />)
+                                : <FailedSearchCritera preloaded={this.state.preloaded} empty={!Boolean(this.state.prescriptions.length)} />
+                        }
                     </Col>
                 </Row>
             </div>
@@ -113,7 +162,7 @@ class PrescriptionSearch extends Component {
                         <Link to="/prescriptioncreate">
                             <Button variant="danger" size="md">
                                 Create Prescription
-                            </Button>
+							</Button>
                         </Link>
                     </Col>
                 </Row>

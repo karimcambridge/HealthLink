@@ -11,10 +11,22 @@ export const create = newPrescription => {
         });
 };
 
-export const getPrescription = prescription => {
+
+export const getAllPrescriptions = () => {
     return axios
-        .post('prescriptions/get', {
-            id: prescription.id
+        .get('prescriptions/getall')
+        .then(response => {
+            return response.data;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+export const getPrescription = patient => {
+    return axios
+        .get('prescriptions/get', {
+            id: patient.id
         })
         .then(response => {
             return response.data;

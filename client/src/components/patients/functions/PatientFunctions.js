@@ -27,7 +27,6 @@ export const getAllPatients = () => {
         });
 };
 
-
 export const getPatient = patient => {
     return axios
         .get('patients/get', {

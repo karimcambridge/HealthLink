@@ -43,4 +43,18 @@ prescriptions.get('/get', (req, res) => {
     });
 });
 
+prescriptions.get('/getall', (req, res) => {
+  Prescription.findAll()
+    .then((results) => {
+      if (results) {
+        res.json(results);
+      } else {
+        res.send({ error: 'Getting all prescriptions error' });
+      }
+    })
+    .catch((err) => {
+      res.send(`error: ${err}`);
+    });
+});
+
 module.exports = prescriptions;

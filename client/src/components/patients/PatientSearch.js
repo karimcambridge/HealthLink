@@ -43,14 +43,6 @@ class FailedSearchCritera extends Component {
 }
 
 class Patient extends Component {
-	humanize(str) {
-		const frags = str.split('_');
-		for(let i = 0; i < frags.length; ++i) {
-			frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-		}
-		return frags.join(' ');
-	}
-
 	parsedContactInformation() {
 		return JSON.parse(this.props.patient.contact_information);
 	}
@@ -100,12 +92,16 @@ class PatientsList extends Component {
 		;
 	}
 
+	customSearchHandler(query, patient) {
+		return (patient.national_id.toLowerCase().search(query) !== -1 || patient.first_name.toLowerCase().search(query) !== -1 || patient.last_name.toLowerCase().search(query) !== -1)
+	}
+
 	render() {
 		return (
 			<div>
 				<Row>
 					<Col sm={12} mb={3}>
-						<Search placeholder="Enter a patient's national ID, first name or last name to search" list={this.state.patients} filterList={(query, patient) => (query.length && (patient.national_id.toLowerCase().search(query) !== -1 || patient.first_name.toLowerCase().search(query) !== -1 || patient.last_name.toLowerCase().search(query) !== -1))} onListUpdate={(patients, query) => this.setState({ visiblePatients: patients, query: query })} />
+						<Search placeholder="Enter a patient's national ID, first name or last name to search" list={this.state.patients} filterList={(query, patient) => (query.length && this.customSearchHandler(query, patient))} onListUpdate={(patients, query) => this.setState({ visiblePatients: patients, query: query })} />
 					</Col>
 				</Row>
 				<Row>
