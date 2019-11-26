@@ -64,9 +64,9 @@ patients.get('/get', (req, res) => {
 
 patients.get('/getall', (req, res) => {
   Patient.findAll()
-    .then((patients) => {
-      if (patients) {
-        res.json(patients);
+    .then((results) => {
+      if (results) {
+        res.json(results);
       } else {
         res.send({ error: 'Getting all patients error' });
       }

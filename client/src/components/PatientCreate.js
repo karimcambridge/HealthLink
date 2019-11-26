@@ -36,7 +36,7 @@ class PatientCreate extends Component {
             contact_information = {}
         ;
         if (this.state.phone_no.length) {
-            contact_information.phone_no_1 = this.state.phone_no;
+            contact_information.phone_no_1 = parseInt(this.state.phone_no);
         }
         const newPatient = {
             national_id: this.state.national_id === '' ? null : this.state.national_id,

@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 
 class Search extends Component {
+    constructor() {
+        super();
+        this.state = {
+            query: ''
+        };
+    }
+
     componentDidMount() {
-        const { placeholder, list, filterList, onListUpdate } = this.props;
-        onListUpdate(list);
+        const { list, onListUpdate } = this.props;
+        onListUpdate(list, this.state.query);
     }
 
     handleInputChange = (event) => {
-        const query = event.currentTarget.value;
-        const { placeholder, list, filterList, onListUpdate } = this.props;
+        this.state.query = event.currentTarget.value;
+        const { list, filterList, onListUpdate } = this.props;
 
-        const filteredList = list.filter(field => filterList(query, field));
+        const filteredList = list.filter(field => filterList(this.state.query, field));
 
-        onListUpdate(filteredList);
+        onListUpdate(filteredList, this.state.query);
     };
 
     render() {
         return (
             <form>
-                <input type="text" className="form-control" placeholder={this.props.placeholder} onChange={this.handleInputChange} />
+                <input value={this.state.query ? this.state.query : ''}  type="text" className="form-control" placeholder={this.props.placeholder} onChange={this.handleInputChange} />
             </form>
         );
     }

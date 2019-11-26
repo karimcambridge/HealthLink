@@ -16,9 +16,21 @@ export const create = newPatient => {
         });
 };
 
+export const getAllPatients = () => {
+    return axios
+        .get('patients/getall')
+        .then(response => {
+            return response.data;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+
 export const getPatient = patient => {
     return axios
-        .post('patients/get', {
+        .get('patients/get', {
             id: patient.id
         })
         .then(response => {
