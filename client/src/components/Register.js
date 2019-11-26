@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import { isAuthenticated, register } from './functions/UserFunctions';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 class Register extends Component {
     constructor() {
@@ -116,15 +118,14 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-6 mt-3 mx-auto">
+            <Container>
+                <Row>
+                    <div className="col-md-6 mt-4 mx-auto">
                         <form onSubmit={this.onSubmit}>
-                            <h1 className="h3 mb-3 font-weight-normal">Register</h1>
                             <div className="form-group">
                                 <label htmlFor="name">Title</label>
                                 <select className="form-control" id="title" name="title" value={this.state.title} onChange={this.onChange} required>
-                                    <option selected>Mr</option>
+                                    <option>Mr</option>
                                     <option>Mrs</option>
                                     <option>Miss / Ms</option>
                                     <option>Dr</option>
@@ -148,7 +149,7 @@ class Register extends Component {
                                     type="text"
                                     className="form-control"
                                     name="last_name"
-                                    placeholder="Enter your lastname name"
+                                    placeholder="Enter your last name"
                                     value={this.state.last_name}
                                     onChange={this.onChange}
                                     required
@@ -188,7 +189,7 @@ class Register extends Component {
                                 type="submit"
                                 className="btn btn-lg btn-primary btn-block"
                             >
-                                Register!
+                                Register
                             </button>
                         </form>
                         <div className="mt-1 float-right">
@@ -196,8 +197,8 @@ class Register extends Component {
                             <a href="/login">Click here to login</a>
                         </div>
                     </div>
-                </div>
-            </div>
+                </Row>
+            </Container>
         )
     }
 }

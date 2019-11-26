@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { isAuthenticated, login } from './functions/UserFunctions';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
 
 class Login extends Component {
@@ -94,10 +96,9 @@ class Login extends Component {
         );
 
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-6 mt-5 mx-auto">
-                        <div className="mt-3"></div>
+            <Container>
+                <Row>
+                    <div className="col-md-6 mt-4 mx-auto">
                         <form onSubmit={this.onSubmit} errors={this.state.errors}>
                             <div className="form-group">
                                 <label htmlFor="email">Email address</label>
@@ -136,8 +137,8 @@ class Login extends Component {
                         </div>
                         { this.state.errors.loginFailed === true ? failedLoginNotification : null }
                     </div>
-                </div>
-            </div>
+                </Row>
+            </Container>
         )
     }
 }

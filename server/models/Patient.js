@@ -9,7 +9,14 @@ module.exports = db.sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    created: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
+    },
     national_id: {
+      type: Sequelize.STRING,
+    },
+    title: {
       type: Sequelize.STRING,
     },
     first_name: {
@@ -18,11 +25,13 @@ module.exports = db.sequelize.define(
     last_name: {
       type: Sequelize.STRING,
     },
-    created: {
+    dob: {
       type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW,
     },
     contact_information: {
+      type: Sequelize.TEXT,
+    },
+    address: {
       type: Sequelize.STRING,
     },
   },

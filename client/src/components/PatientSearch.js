@@ -7,16 +7,35 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Patient extends Component {
+    humanize(str) {
+        const frags = str.split('_');
+        for(let i = 0; i < frags.length; ++i) {
+            frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+        }
+        return frags.join(' ');
+    }
+
+    parsedContactInformation() {
+        return JSON.parse(this.props.patient.contact_information);
+    }
+
     render() {
         return (
             <Card>
                 <Card.Body>
-                    <Card.Title><a href="#">{this.props.patient.first_name} {this.props.patient.last_name}</a></Card.Title>
+                    <Card.Title>
+                        <Link to="/patientcreate">
+                            {this.props.patient.first_name} {this.props.patient.last_name}
+                        </Link>
+                    </Card.Title>
                     <ListGroup horizontal>
                         <ListGroup.Item><strong>National ID:</strong> {this.props.patient.national_id}</ListGroup.Item>
                         <ListGroup.Item><strong>Date of Birth:</strong> {this.props.patient.dob}</ListGroup.Item>
+                        {this.props.patient.address ? <ListGroup.Item><strong>Address:</strong> {this.props.patient.address}</ListGroup.Item> : ''}
+                        {this.props.patient.contact_information ? <ListGroup.Item><strong>Contact Information:</strong> {this.parsedContactInformation()['phone_no_1']}</ListGroup.Item> : ''}
                     </ListGroup>
                 </Card.Body>
             </Card>
@@ -93,9 +112,11 @@ class PatientSearch extends Component {
                         <PatientsList />
                     </Col>
                     <Col sm={2} className="mt-4 mx-auto">
-                        <Button variant="danger" size="md">
-                            Create Patient
-                        </Button>
+                        <Link to="/patientcreate">
+                            <Button variant="danger" size="md">
+                                Create Patient
+                            </Button>
+                        </Link>
                     </Col>
                 </Row>
             </Container>

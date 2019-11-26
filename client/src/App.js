@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import PatientSearch from './components/PatientSearch';
+import PatientCreate from './components/PatientCreate';
 import { isAuthenticated } from './components/functions/UserFunctions';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -32,6 +33,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/patientsearch" component={PatientSearch} />
+            <PrivateRoute exact path="/patientcreate" component={PatientCreate} />
           </div>
         </div>
       </Router>

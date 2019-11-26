@@ -11,10 +11,14 @@ process.env.SECRET_KEY = 'secret';
 patients.post('/create', (req, res) => {
   const today = new Date();
   const patientData = {
+    created: today,
     national_id: req.body.national_id,
+    title: req.body.title,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
-    created: today,
+    dob: req.body.dob,
+    contact_information: req.body.contact_information,
+    address: req.body.address,
   };
 
   Patient.findOne({
