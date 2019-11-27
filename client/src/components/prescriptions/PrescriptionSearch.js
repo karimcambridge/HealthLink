@@ -47,7 +47,7 @@ class PrescriptionList extends Component {
             prescriptions: [],
             visiblePrescriptions: [],
             query: ''
-        }
+        };
     }
 
     componentDidMount() {

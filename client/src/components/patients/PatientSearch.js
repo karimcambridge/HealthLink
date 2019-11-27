@@ -46,7 +46,7 @@ class PatientsList extends Component {
 			patients: [],
 			visiblePatients: [],
 			query: ''
-		}
+		};
 	}
 
 	componentDidMount() {

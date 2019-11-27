@@ -19,7 +19,7 @@ class Profile extends Component {
             title: '',
             role: '',
             errors: {}
-        }
+        };
     }
 
     componentDidMount() {

@@ -16,8 +16,8 @@ class Prescription extends Component {
 		this.state = {
 			loaded: false,
 			prescriptionId: props.location.id,
-			prescription: {}
-		}
+			prescription: {},
+		};
 		console.log(`Init prescription: ${this.state.prescriptionId}`);
 		this.onGoBack = this.onGoBack.bind(this);
 	}
@@ -66,10 +66,10 @@ class Prescription extends Component {
 						</Col>
 					</Row>
 					<Col md={4} className="mt-4 mx-auto">
-						<Card style={{ width: '18rem' }} >
+						<Card>
 							<Card.Header>Prescription <strong>#{this.state.prescription.referenceNumber()}</strong></Card.Header>
 							<Card.Body>
-								<Card.Title>{this.state.prescription.parsedData.first_name} {this.state.prescription.parsedData.last_name}</Card.Title>
+								<Card.Title className="text-center">{this.state.prescription.parsedData.first_name} {this.state.prescription.parsedData.last_name}</Card.Title>
 							</Card.Body>
 							<ListGroup variant="list-group-flush">
 								<ListGroup.Item><strong>Address:</strong><br />{this.state.prescription.parsedData.address}</ListGroup.Item>

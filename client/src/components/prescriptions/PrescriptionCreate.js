@@ -17,7 +17,7 @@ class PrescriptionCreate extends Component {
             drug_names: '',
             note: '',
             errors: {},
-        }
+        };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);

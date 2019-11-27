@@ -46,14 +46,13 @@ export const getAllPrescriptions = () => {
 };
 
 export const getPrescription = id => {
-    id = 1;
-    console.log('getPrescription: ' + id);
+    console.log('init getPrescription: ' + id);
     return axios
         .get('get', {
             id: id
         })
         .then(response => {
-            console.log('getPrescription: ' + JSON.stringify(response.data));
+            console.log('getPrescription response: ' + JSON.stringify(response.data));
             return response.data;
         })
         .catch(err => {
