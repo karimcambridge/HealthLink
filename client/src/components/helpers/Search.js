@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Card from 'react-bootstrap/Card';
 
-class Search extends Component {
+export class Search extends Component {
     constructor() {
         super();
         this.state = {
@@ -32,7 +34,36 @@ class Search extends Component {
     }
 }
 
-export default Search;
+export class FailedSearchCritera extends Component {
+    render() {
+        return (
+            this.props.preloaded === false
+                ? (
+                    <FontAwesomeIcon style={{ display: 'flex', height: '20vh' }} className="mx-auto" icon="spinner" size="2x" pulse />
+                )
+                : this.props.empty
+                    ? (
+                        <Card>
+                            <Card.Header>
+                                <Card.Title>
+                                    There are currently no {this.props.description} in the database.
+							</Card.Title>
+                            </Card.Header>
+                        </Card>
+                    )
+                    : this.props.query.length ? (
+                        <Card>
+                            <Card.Header>
+                                <Card.Title>
+                                    No {this.props.description} found with the search criteria '{this.props.query}'
+							</Card.Title>
+                            </Card.Header>
+                        </Card>
+                    )
+                        : ''
+        );
+    }
+}
 
 /*
 This revised version of Search takes some additional props which allows it to be reused as required.

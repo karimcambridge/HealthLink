@@ -8,39 +8,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { getAllPrescriptions } from './functions/PrescriptionFunctions';
-import Search from '../helpers/Search';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-class FailedSearchCritera extends Component {
-    render() {
-        return (
-            this.props.preloaded === false
-                ? (
-                    <FontAwesomeIcon style={{ display: 'flex', height: '20vh' }} className="mx-auto" icon="spinner" size="2x" pulse />
-                )
-                : this.props.empty
-                    ? (
-                        <Card>
-                            <Card.Header>
-                                <Card.Title>
-                                    There are currently no prescriptions in the database.
-							</Card.Title>
-                            </Card.Header>
-                        </Card>
-                    )
-                    : this.props.query.length ? (
-                        <Card>
-                            <Card.Header>
-                                <Card.Title>
-                                    No prescriptions found with the search criteria '{this.props.query}'
-							</Card.Title>
-                            </Card.Header>
-                        </Card>
-                    )
-                        : ''
-        );
-    }
-}
+import { Search, FailedSearchCritera } from '../helpers/Search';
 
 class Prescription extends Component {
     constructor(props) {
@@ -136,8 +104,8 @@ class PrescriptionList extends Component {
                                     ? this.state.visiblePrescriptions.map(prescription => {
                                         return <Prescription prescription={prescription} key={prescription.id} />;
                                     })
-                                    : <FailedSearchCritera query={this.state.query} />)
-                                : <FailedSearchCritera preloaded={this.state.preloaded} empty={!Boolean(this.state.prescriptions.length)} />
+                                    : <FailedSearchCritera description="prescriptions" query={this.state.query} />)
+                                : <FailedSearchCritera description="prescriptions" preloaded={this.state.preloaded} empty={!Boolean(this.state.prescriptions.length)} />
                         }
                     </Col>
                 </Row>
