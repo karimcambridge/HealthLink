@@ -49,7 +49,7 @@ class PatientCreate extends Component {
         }
 
         create(newPatient).then(res => {
-            this.props.history.push(`/patientsearch`);
+            this.props.history.push(`/patients/search`);
         });
     }
 

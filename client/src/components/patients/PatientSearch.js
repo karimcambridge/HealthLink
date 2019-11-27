@@ -52,7 +52,7 @@ class Patient extends Component {
 			<Card>
 				<Card.Body>
 					<Card.Title>
-						<Link to={`patientprofile/${this.props.patient.id}`}>
+						<Link to={`patient/${this.props.patient.id}`}>
 							{this.props.patient.first_name} {this.props.patient.last_name}
 						</Link>
 					</Card.Title>
@@ -69,6 +69,8 @@ class Patient extends Component {
 }
 
 class PatientsList extends Component {
+	_isMounted = false;
+
 	constructor() {
 		super();
 		this.state = {
@@ -80,16 +82,23 @@ class PatientsList extends Component {
 	}
 
 	componentDidMount() {
+		this._isMounted = true;
 		getAllPatients()
 			.then(parsedJSON => {
-				parsedJSON.forEach(patient => {
-					patient.dob = Moment(patient.dob).utc().format('YYYY-MM-DD');
-				});
-				this.setState({ preloaded: true, patients: parsedJSON, visiblePatients: [] });
-				console.log('[PATIENTS LOADED]: ' + JSON.stringify(this.state.patients));
+				if(this._isMounted) {
+					parsedJSON.forEach(patient => {
+						patient.dob = Moment(patient.dob).utc().format('YYYY-MM-DD');
+					});
+					this.setState({ preloaded: true, patients: parsedJSON, visiblePatients: [] });
+					console.log('[PATIENTS LOADED]: ' + JSON.stringify(this.state.patients));
+				}
 			})
 			.catch(error => console.log(error))
 		;
+	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
 	}
 
 	customSearchHandler(query, patient) {
@@ -156,7 +165,7 @@ class PatientSearch extends Component {
 						<PatientsList />
 					</Col>
 					<Col sm={1} className="mt-4 mx-auto">
-						<Link to="/patientcreate">
+						<Link to="/patients/create">
 							<Button variant="danger" size="md">
 								Create Patient
 							</Button>

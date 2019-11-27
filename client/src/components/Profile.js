@@ -52,14 +52,14 @@ class Profile extends Component {
                     </Col>
                     <Col md={4} className="mt-4 mx-auto">
                         <div>
-                            <Link to="/patientsearch">
+                            <Link to="/patients/search">
                                 <Button variant="primary" size="lg">
                                     Find Patient
                                 </Button>
                             </Link>
                         </div>
                         <div className="mt-5">
-                            <Link to="/prescriptionsearch">
+                            <Link to="/prescriptions/search">
                                 <Button variant="info" size="lg">
                                     Find Prescription
                                 </Button>

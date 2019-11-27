@@ -55,7 +55,7 @@ class PrescriptionCreate extends Component {
         }
 
         create(newPatient).then(res => {
-            this.props.history.push(`/prescriptionsearch`);
+            this.props.history.push(`/prescriptions/search`);
         });
     }
 

@@ -34,10 +34,10 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/profile" component={Profile} />
-            <PrivateRoute exact path="/patientsearch" component={PatientSearch} />
-            <PrivateRoute exact path="/patientcreate" component={PatientCreate} />
-            <PrivateRoute exact path="/prescriptioncreate" component={PrescriptionCreate} />
-            <PrivateRoute exact path="/prescriptionsearch" component={PrescriptionSearch} />
+            <PrivateRoute exact path="/patients/search" component={PatientSearch} />
+            <PrivateRoute exact path="/patients/create" component={PatientCreate} />
+            <PrivateRoute exact path="/prescriptions/create" component={PrescriptionCreate} />
+            <PrivateRoute exact path="/prescriptions/search" component={PrescriptionSearch} />
           </div>
         </div>
       </Router>

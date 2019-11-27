@@ -69,6 +69,8 @@ class Prescription extends Component {
 }
 
 class PrescriptionList extends Component {
+    _isMounted = false;
+
     constructor() {
         super();
         this.state = {
@@ -80,17 +82,24 @@ class PrescriptionList extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         getAllPrescriptions()
             .then(parsedJSON => {
-                parsedJSON.forEach(prescription => {
-                    prescription.created = Moment(prescription.created).utc().format('YYYY-MM-DD');
-                    prescription.parsedData = this.formatPrescriptionData(prescription);
-                });
-                this.setState({ preloaded: true, prescriptions: parsedJSON, visiblePrescriptions: [] });
-                console.log('[PRESCRIPTIONS LOADED]: ' + JSON.stringify(this.state.prescriptions));
+                if(this._isMounted) {
+                    parsedJSON.forEach(prescription => {
+                        prescription.created = Moment(prescription.created).utc().format('YYYY-MM-DD');
+                        prescription.parsedData = this.formatPrescriptionData(prescription);
+                    });
+                    this.setState({ preloaded: true, prescriptions: parsedJSON, visiblePrescriptions: [] });
+                    console.log('[PRESCRIPTIONS LOADED]: ' + JSON.stringify(this.state.prescriptions));
+                }
             })
             .catch(error => console.log(error))
         ;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     formatPrescriptionData(prescription) {
@@ -171,7 +180,7 @@ class PrescriptionSearch extends Component {
                         <PrescriptionList />
                     </Col>
                     <Col sm={1} className="mt-4 mx-auto">
-                        <Link to="/prescriptioncreate">
+                        <Link to="/prescriptions/create">
                             <Button variant="danger" size="md">
                                 Create Prescription
 							</Button>

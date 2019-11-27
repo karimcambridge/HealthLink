@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const create = newPrescription => {
     return axios
-        .post('prescriptions/create', {
+        .post('create', {
             data: newPrescription.data,
             patient_id: newPrescription.patient_id,
         })
@@ -14,7 +14,7 @@ export const create = newPrescription => {
 
 export const getAllPrescriptions = () => {
     return axios
-        .get('prescriptions/getall')
+        .get('getall')
         .then(response => {
             return response.data;
         })
@@ -25,7 +25,7 @@ export const getAllPrescriptions = () => {
 
 export const getPrescription = patient => {
     return axios
-        .get('prescriptions/get', {
+        .get('get', {
             id: patient.id
         })
         .then(response => {
