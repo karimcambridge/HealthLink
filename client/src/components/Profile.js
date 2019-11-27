@@ -23,14 +23,14 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        const decoded = jwt_decode(getUserToken())
-            this.setState({
-                first_name: decoded.first_name,
-                last_name: decoded.last_name,
-                email: decoded.email,
-                title: decoded.title,
-                role: decoded.role
-            });
+        const decoded = jwt_decode(getUserToken());
+        this.setState({
+            first_name: decoded.first_name,
+            last_name: decoded.last_name,
+            email: decoded.email,
+            title: decoded.title,
+            role: decoded.role
+        });
     }
 
     render() {
