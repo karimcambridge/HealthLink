@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-import { getAllPrescriptions } from './functions/PrescriptionFunctions';
+import { getAllPrescriptions, fixPrescription } from './functions/PrescriptionFunctions';
 import { Search, FailedSearchCritera } from '../helpers/Search';
 
 class Prescription extends Component {
@@ -50,21 +50,13 @@ class PrescriptionList extends Component {
         }
     }
 
-    zeroPad(num, places) {
-        return String(num).padStart(places, '0');
-    }
-
     componentDidMount() {
         this._isMounted = true;
         getAllPrescriptions()
             .then(parsedJSON => {
                 if(this._isMounted) {
                     parsedJSON.forEach(prescription => {
-                        prescription.created = Moment(prescription.created).utc().format('YYYY-MM-DD');
-                        prescription.parsedData = this.formatPrescriptionData(prescription);
-                        prescription.referenceNumber = () => {
-                            return this.zeroPad(prescription.id, 10);
-                        };
+                        prescription = fixPrescription(prescription);
                     });
                     this.setState({ preloaded: true, prescriptions: parsedJSON, visiblePrescriptions: [] });
                     //console.log('[PRESCRIPTIONS LOADED]: ' + JSON.stringify(this.state.prescriptions));
@@ -76,20 +68,6 @@ class PrescriptionList extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
-    }
-
-    formatPrescriptionData(prescription) {
-        const
-            data = JSON.parse(prescription.data),
-            parsedData = {
-                first_name: data.first_name,
-                last_name: data.last_name,
-                address: data.address,
-                drug_names: data.drug_names,
-                note: data.note
-            }
-        ;
-        return parsedData;
     }
 
     customSearchHandler(query, prescription) {

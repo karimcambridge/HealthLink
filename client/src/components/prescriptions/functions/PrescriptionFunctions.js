@@ -1,4 +1,27 @@
 import axios from 'axios';
+import Moment from 'moment';
+
+const zeroPad = (num, places) => {
+    return String(num).padStart(places, '0');
+};
+
+export const fixPrescription = prescription => {
+    const
+        data = JSON.parse(prescription.data)
+    ;
+    prescription.parsedData = {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        address: data.address,
+        drug_names: data.drug_names,
+        note: data.note
+    }
+    prescription.created = Moment(prescription.created).utc().format('YYYY-MM-DD');
+    prescription.referenceNumber = () => {
+        return zeroPad(prescription.id, 10);
+    };
+    return prescription;
+};
 
 export const create = newPrescription => {
     return axios

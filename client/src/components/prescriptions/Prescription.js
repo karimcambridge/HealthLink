@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
-import Moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-import { getPrescription } from './functions/PrescriptionFunctions';
+import { getPrescription, fixPrescription } from './functions/PrescriptionFunctions';
 
 class Prescription extends Component {
 	_isMounted = false;
@@ -23,20 +22,6 @@ class Prescription extends Component {
 		this.onGoBack = this.onGoBack.bind(this);
 	}
 
-	formatPrescriptionData(prescription) {
-		const
-			data = JSON.parse(prescription.data),
-			parsedData = {
-				first_name: data.first_name,
-				last_name: data.last_name,
-				address: data.address,
-				drug_names: data.drug_names,
-				note: data.note
-			}
-		;
-		return parsedData;
-	}
-
 	componentDidMount() {
 		this._isMounted = true;
 		getPrescription(this.state.prescriptionId)
@@ -45,12 +30,7 @@ class Prescription extends Component {
 					if (parsedJSON.error) {
 						console.log(`[PRESCRIPTION LOADING ERROR]: ` + parsedJSON.error);
 					} else {
-						this.state.prescription = parsedJSON;
-						this.state.prescription.created = Moment(this.state.prescription.created).utc().format('YYYY-MM-DD');
-						this.state.prescription.parsedData = this.formatPrescriptionData(this.state.prescription);
-						this.state.prescription.referenceNumber = () => {
-							return this.zeroPad(this.state.prescription.id, 10);
-						};
+						this.state.prescription = fixPrescription(parsedJSON);
 						this.setState({ loaded: true } );
 						console.log(`[PRESCRIPTION ${this.state.prescription.id} LOADED]: ` + JSON.stringify(this.state.prescription));
 					}
@@ -62,10 +42,6 @@ class Prescription extends Component {
 
 	componentWillUnmount() {
 		this._isMounted = false;
-	}
-
-	zeroPad(num, places) {
-		return String(num).padStart(places, '0');
 	}
 
 	onGoBack(e) {
@@ -91,14 +67,14 @@ class Prescription extends Component {
 					</Row>
 					<Col md={4} className="mt-4 mx-auto">
 						<Card style={{ width: '18rem' }} >
-							<Card.Header>Prescription #{this.state.prescription.referenceNumber()}</Card.Header>
+							<Card.Header>Prescription <strong>#{this.state.prescription.referenceNumber()}</strong></Card.Header>
 							<Card.Body>
 								<Card.Title>{this.state.prescription.parsedData.first_name} {this.state.prescription.parsedData.last_name}</Card.Title>
 							</Card.Body>
 							<ListGroup variant="list-group-flush">
-								<ListGroup.Item><strong>Address:</strong> {this.state.prescription.parsedData.address}</ListGroup.Item>
-								<ListGroup.Item><strong>Drug Name:</strong> {this.state.prescription.parsedData.drug_names}</ListGroup.Item>
-								<ListGroup.Item><strong>Note:</strong> {this.state.prescription.parsedData.note}</ListGroup.Item>
+								<ListGroup.Item><strong>Address:</strong><br />{this.state.prescription.parsedData.address}</ListGroup.Item>
+								<ListGroup.Item><strong>Drug Names:</strong><br />{this.state.prescription.parsedData.drug_names}</ListGroup.Item>
+								<ListGroup.Item><strong>Note:</strong><br />{this.state.prescription.parsedData.note}</ListGroup.Item>
 							</ListGroup>
 						</Card>
 					</Col>
