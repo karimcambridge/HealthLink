@@ -33,11 +33,12 @@ export const login = user => {
 };
 
 export const getUserToken = () => {
-    return localStorage.usertoken;
+    const jwtToken = localStorage.getItem('usertoken');
+    return jwtToken ? localStorage.usertoken : false;
 };
 
 export const isAuthenticated = () => {
-    return localStorage.usertoken ? true : false;
+    return getUserToken() ? true : false;
 };
 
 export const logOut = () => {

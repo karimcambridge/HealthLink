@@ -30,9 +30,9 @@ class Prescription extends Component {
 					if (parsedJSON.error) {
 						console.log(`[PRESCRIPTION LOADING ERROR]: ` + parsedJSON.error);
 					} else {
-						this.state.prescription = fixPrescription(parsedJSON);
-						this.setState({ loaded: true } );
-						console.log(`[PRESCRIPTION ${this.state.prescription.id} LOADED]: ` + JSON.stringify(this.state.prescription));
+						this.setState( { loaded: true, prescription: fixPrescription(parsedJSON) }, () => {
+							console.log(`[PRESCRIPTION ${this.state.prescription.id} LOADED]: ` + JSON.stringify(this.state.prescription));
+						} );
 					}
 				}
 			})

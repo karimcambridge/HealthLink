@@ -124,10 +124,9 @@ class PrescriptionCreate extends Component {
 					<Col md="7" className="mt-4 mx-auto mb-4">
 						<form onSubmit={this.onSubmit}>
 							<div className="form-group">
-								<img width="200" height="200" src="https://cdn0.iconfinder.com/data/icons/medical-health-care-blue-series-set-3/64/b-45-512.png" className="rounded mx-auto d-block" />
+								<img width="200" height="200" src="https://cdn0.iconfinder.com/data/icons/medical-health-care-blue-series-set-3/64/b-45-512.png" className="rounded mx-auto d-block" alt="rx-logo" />
 								<label htmlFor="name">Search for a patient</label>
 								<Select
-									value={null}
 									value={this.state.selectedPatientOption}
 									onChange={this.handlePatientChange}
 									options={this.state.patientOptions}
