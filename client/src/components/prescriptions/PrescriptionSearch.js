@@ -25,11 +25,11 @@ class Prescription extends Component {
                         </Link>
                     </Card.Title>
                     <ListGroup horizontal>
-                        <ListGroup.Item><strong>Reference #:</strong> #{this.props.prescription.referenceNumber()}</ListGroup.Item>
-                        <ListGroup.Item><strong>Date created:</strong> {this.props.prescription.created}</ListGroup.Item>
-                        {this.props.prescription.parsedData.address ? <ListGroup.Item><strong>Address:</strong> {this.props.prescription.parsedData.address}</ListGroup.Item> : ''}
-                        {this.props.prescription.parsedData.drug_names ? <ListGroup.Item><strong>Drug Information:</strong> {this.props.prescription.parsedData.drug_names}</ListGroup.Item> : ''}
-                        {this.props.prescription.parsedData.note ? <ListGroup.Item><strong>Note:</strong> {this.props.prescription.parsedData.note}</ListGroup.Item> : ''}
+                        <ListGroup.Item style={{ width: "100%" }}><strong>Reference #:</strong><br />#{this.props.prescription.referenceNumber()}</ListGroup.Item>
+                        <ListGroup.Item style={{ width: "100%" }}><strong>Date created:</strong><br />{this.props.prescription.created}</ListGroup.Item>
+                        {this.props.prescription.parsedData.address ? <ListGroup.Item style={{ width: "100%" }}><strong>Address:</strong><br />{this.props.prescription.parsedData.address}</ListGroup.Item> : ''}
+                        {this.props.prescription.parsedData.drug_names ? <ListGroup.Item style={{ width: "100%" }}><strong>Drug Information:</strong><br />{this.props.prescription.parsedData.drug_names}</ListGroup.Item> : ''}
+                        {this.props.prescription.parsedData.note ? <ListGroup.Item style={{ width: "100%" }}><strong>Note:</strong><br />{this.props.prescription.parsedData.note}</ListGroup.Item> : ''}
                     </ListGroup>
                 </Card.Body>
             </Card>
@@ -130,7 +130,7 @@ class PrescriptionSearch extends Component {
                             Go Back
                         </Button>
                     </Col>
-                    <Col sm={8} className="mt-4 mx-auto">
+                    <Col sm={10} className="mt-4 mx-auto">
                         <PrescriptionList />
                     </Col>
                     <Col sm={1} className="mt-4 mx-auto">

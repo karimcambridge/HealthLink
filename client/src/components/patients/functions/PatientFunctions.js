@@ -18,7 +18,7 @@ export const create = newPatient => {
 
 export const getAllPatients = () => {
     return axios
-        .get('getall')
+        .get('/patients/getall')
         .then(response => {
             return response.data;
         })

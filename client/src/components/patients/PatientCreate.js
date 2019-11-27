@@ -46,7 +46,7 @@ class PatientCreate extends Component {
             dob: this.state.dob,
             contact_information: Object.keys(contact_information).length ? JSON.stringify(contact_information) : null,
             address: this.state.address === '' ? null : this.state.address,
-        }
+        };
 
         create(newPatient).then(res => {
             this.props.history.push(`/patients/search`);

@@ -9,14 +9,18 @@ module.exports = db.sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        data: {
-            type: Sequelize.STRING,
-        },
         created: {
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW,
         },
-    },
+        data: {
+            type: Sequelize.STRING,
+        },
+        patient_id: {
+            allowNull: true,
+            type: Sequelize.INTEGER,
+        },
+    }, 
     {
         timestamps: false,
     },

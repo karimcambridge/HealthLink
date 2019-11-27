@@ -25,10 +25,10 @@ class Patient extends Component {
 						</Link>
 					</Card.Title>
 					<ListGroup horizontal>
-						<ListGroup.Item><strong>National ID:</strong> {this.props.patient.national_id}</ListGroup.Item>
-						<ListGroup.Item><strong>Date of Birth:</strong> {this.props.patient.dob}</ListGroup.Item>
-						{this.props.patient.address ? <ListGroup.Item><strong>Address:</strong> {this.props.patient.address}</ListGroup.Item> : ''}
-						{this.props.patient.contact_information ? <ListGroup.Item><strong>Contact Information:</strong> {this.parsedContactInformation()['phone_no_1']}</ListGroup.Item> : ''}
+						<ListGroup.Item style={{ width: "100%" }}><strong>National ID:</strong><br />{this.props.patient.national_id}</ListGroup.Item>
+						<ListGroup.Item style={{ width: "100%" }}><strong>Date of Birth:</strong><br />{this.props.patient.dob}</ListGroup.Item>
+						{this.props.patient.address ? <ListGroup.Item style={{ width: "100%" }}><strong>Address:</strong><br />{this.props.patient.address}</ListGroup.Item> : ''}
+						{this.props.patient.contact_information ? <ListGroup.Item style={{ width: "100%" }}><strong>Contact Information:</strong><br />{this.parsedContactInformation()['phone_no_1']}</ListGroup.Item> : ''}
 					</ListGroup>
 				</Card.Body>
 			</Card>
