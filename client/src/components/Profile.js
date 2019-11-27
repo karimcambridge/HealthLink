@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { getUserToken } from './functions/UserFunctions';
 import Container from 'react-bootstrap/Container';
@@ -7,7 +8,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Profile extends Component {
     constructor() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,10 +11,6 @@ import { getAllPrescriptions } from './functions/PrescriptionFunctions';
 import { Search, FailedSearchCritera } from '../helpers/Search';
 
 class Prescription extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Card>
