@@ -8,11 +8,10 @@ prescription.use(cors());
 
 process.env.SECRET_KEY = 'secret';
 
-prescription.get('/get', (req, res) => {
-    console.log('server getPrescription: ' + req.body.id);
+prescription.get('/:id', (req, res) => {
     Prescription.findOne({
         where: {
-            id: 1,
+            id: req.query.id,
         },
     })
     .then((prescription) => {

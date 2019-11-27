@@ -74,7 +74,7 @@ class Prescription extends Component {
 							<ListGroup variant="list-group-flush">
 								<ListGroup.Item><strong>Address:</strong><br />{this.state.prescription.parsedData.address}</ListGroup.Item>
 								<ListGroup.Item><strong>Drug Names:</strong><br />{this.state.prescription.parsedData.drug_names}</ListGroup.Item>
-								<ListGroup.Item><strong>Note:</strong><br />{this.state.prescription.parsedData.note}</ListGroup.Item>
+								{this.state.prescription.parsedData.note ? <ListGroup.Item><strong>Note:</strong><br />{this.state.prescription.parsedData.note}</ListGroup.Item> : ''}
 							</ListGroup>
 						</Card>
 					</Col>
