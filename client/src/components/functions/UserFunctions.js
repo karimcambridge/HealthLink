@@ -22,13 +22,10 @@ export const login = user => {
             password: user.password
         })
         .then(response => {
-            //console.log(JSON.stringify(response));
-            if (response.hasOwnProperty('error')) {
-                return response;
-            } else {
+            if (!response.data.hasOwnProperty('error')) {
                 localStorage.setItem('usertoken', response.data);
-                return response.data;
             }
+            return response.data;
         })
         .catch(err => {
             console.log(err);
