@@ -17,7 +17,7 @@ Maintained by
 ###### install dependencies
 * npm install
 
-###### to test for development purposes
+###### to live run for development purposes
 * npm start
 * Open [localhost:3000](http://localhost:3000) to view it in the browser.
 

@@ -21,6 +21,7 @@ class Prescription extends Component {
                         </Link>
                     </Card.Title>
                     <ListGroup horizontal>
+                        <ListGroup.Item><strong>Reference #:</strong> #{this.props.prescription.referenceNumber()}</ListGroup.Item>
                         <ListGroup.Item><strong>Date created:</strong> {this.props.prescription.created}</ListGroup.Item>
                         {this.props.prescription.parsedData.address ? <ListGroup.Item><strong>Address:</strong> {this.props.prescription.parsedData.address}</ListGroup.Item> : ''}
                         {this.props.prescription.parsedData.drug_names ? <ListGroup.Item><strong>Drug Information:</strong> {this.props.prescription.parsedData.drug_names}</ListGroup.Item> : ''}
@@ -45,6 +46,10 @@ class PrescriptionList extends Component {
         }
     }
 
+    zeroPad(num, places) {
+        return String(num).padStart(places, '0');
+    }
+
     componentDidMount() {
         this._isMounted = true;
         getAllPrescriptions()
@@ -53,6 +58,9 @@ class PrescriptionList extends Component {
                     parsedJSON.forEach(prescription => {
                         prescription.created = Moment(prescription.created).utc().format('YYYY-MM-DD');
                         prescription.parsedData = this.formatPrescriptionData(prescription);
+                        prescription.referenceNumber = () => {
+                            return this.zeroPad(prescription.id, 10);
+                        };
                     });
                     this.setState({ preloaded: true, prescriptions: parsedJSON, visiblePrescriptions: [] });
                     console.log('[PRESCRIPTIONS LOADED]: ' + JSON.stringify(this.state.prescriptions));
