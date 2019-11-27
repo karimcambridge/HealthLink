@@ -20,18 +20,19 @@ prescriptions.post('/create', (req, res) => {
     .then((created) => {
       res.json({ status: `prescription (${created.id}) ${created.first_name} ${created.last_name} created!` });
     })
-    .catch((authErr) => {
-      res.send(`error: ${authErr}`);
+    .catch((err) => {
+      res.send({ error: err });
     });
 });
 
-prescriptions.get('/get', (req, res) => {
+prescriptions.get('/get', (req, res) => {false 
   Prescription.findOne({
-    where: {
-      id: req.body.id,
-    },
-  })
+      where: {
+        id: req.body.id,
+      },
+    })
     .then((prescription) => {
+      //console.log(`prescription: ${JSON.stringify(prescription)}`);
       if (prescription) {
         res.json(prescription);
       } else {
@@ -39,7 +40,7 @@ prescriptions.get('/get', (req, res) => {
       }
     })
     .catch((err) => {
-      res.send(`error: ${err}`);
+      res.send({ error: err });
     });
 });
 
@@ -53,7 +54,7 @@ prescriptions.get('/getall', (req, res) => {
       }
     })
     .catch((err) => {
-      res.send(`error: ${err}`);
+      res.send({ error: err });
     });
 });
 

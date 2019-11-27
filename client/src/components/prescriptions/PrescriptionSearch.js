@@ -16,7 +16,11 @@ class Prescription extends Component {
             <Card>
                 <Card.Body>
                     <Card.Title>
-                        <Link to={`prescription/${this.props.prescription.id}`}>
+                        <Link
+                            to={{
+                                pathname: `/prescription/${this.props.prescription.id}`,
+                                id: this.props.prescription.id
+                            }}>
                             {this.props.prescription.parsedData.first_name} {this.props.prescription.parsedData.last_name}
                         </Link>
                     </Card.Title>
@@ -63,7 +67,7 @@ class PrescriptionList extends Component {
                         };
                     });
                     this.setState({ preloaded: true, prescriptions: parsedJSON, visiblePrescriptions: [] });
-                    console.log('[PRESCRIPTIONS LOADED]: ' + JSON.stringify(this.state.prescriptions));
+                    //console.log('[PRESCRIPTIONS LOADED]: ' + JSON.stringify(this.state.prescriptions));
                 }
             })
             .catch(error => console.log(error))

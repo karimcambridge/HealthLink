@@ -22,10 +22,10 @@ patients.post('/create', (req, res) => {
   };
 
   Patient.findOne({
-    where: {
-      national_id: req.body.national_id,
-    },
-  })
+      where: {
+        national_id: req.body.national_id,
+      },
+    })
     .then((patient) => {
       if (!patient) {
         Patient.create(patientData)
@@ -40,7 +40,7 @@ patients.post('/create', (req, res) => {
       }
     })
     .catch((err) => {
-      res.send(`error: ${err}`);
+      res.send({ error: err });
     });
 });
 
@@ -58,7 +58,7 @@ patients.get('/get', (req, res) => {
       }
     })
     .catch((err) => {
-      res.send(`error: ${err}`);
+      res.send({ error: err });
     });
 });
 
@@ -72,7 +72,7 @@ patients.get('/getall', (req, res) => {
       }
     })
     .catch((err) => {
-      res.send(`error: ${err}`);
+      res.send({ error: err });
     });
 });
 

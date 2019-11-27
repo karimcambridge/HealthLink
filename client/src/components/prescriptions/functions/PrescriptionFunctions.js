@@ -11,7 +11,6 @@ export const create = newPrescription => {
         });
 };
 
-
 export const getAllPrescriptions = () => {
     return axios
         .get('getall')
@@ -23,12 +22,15 @@ export const getAllPrescriptions = () => {
         });
 };
 
-export const getPrescription = patient => {
+export const getPrescription = id => {
+    id = 1;
+    console.log('getPrescription: ' + id);
     return axios
         .get('get', {
-            id: patient.id
+            id: id
         })
         .then(response => {
+            console.log('getPrescription: ' + JSON.stringify(response.data));
             return response.data;
         })
         .catch(err => {
